@@ -1,15 +1,21 @@
 import "./App.css";
-import React, { useState, useEffect, useRef } from "react";
-import AnGrid from './component/AnGrid'
+import React, { useState, useEffect } from "react";
+//import AnGrid from './components/AnGrid'
+import AnGrid from 'react-angrid';
+import data from './data'
 
 function App() {
-  const table = useRef(null);
   const [loading, setLoading] = useState(false);
+  const [rows, setRows] = useState([]);
   const [filter, setFilter] = useState({
     pageSize: 4,
     pageNumber: 1,
   });
   const [totalCount, setTotalCount] = useState(3);
+
+  const _delete = (data) => {
+    setRows(rows.filter(x => x.userId !== data.userId))
+  }
   const columns = [
     {
       field: "userId",
@@ -22,46 +28,41 @@ function App() {
       headerName: "Fullname",
       description: "full name of user",
       width: 100,
+      sortable: true
     },
     {
       field: "age",
       headerName: "Age",
       description: "age of user",
       width: 50,
+    },
+    {
+      field: "delete",
+      headerName: "delete(component cell)",
+      description: "delete user",
+      width: 50,
+      renderCell: (row) => {
+        return row.data.userId === 1 ? "-" : <button onClick={() => _delete(row.data)}>X</button>
+      }
     }
   ];
   let active = true;
   //=== events
   const _fetchData = async () => {
+    console.log('=== fetch data');
     if (!active) return;
     //mock api, you can call your api then set data to table like commented line below
     return new Promise((resolve) => {
+      setLoading(true);
       setTimeout(() => {
-        table.current.replaceRows([{
-          userId: 1,
-          fullName: 'mohammad karimi',
-          age: 34
-        }, {
-          userId: 2,
-          fullName: 'shahrooz bazrafshan',
-          age: 31
-        }, {
-          userId: 3,
-          fullName: 'mehran norouzi',
-          age: 34
-        },
-        {
-          userId: 4,
-          fullName: 'mehdi emrani',
-          age: 35
-        },
-        {
-          userId: 5,
-          fullName: 'navid montazeripoor',
-          age: 30
-        }]);//=== set rows with new rows
+        if (filter.pageNumber === 1)
+          setRows(data.filter(x => x.userId < 5));// Set Rows
+        else
+          setRows(data.filter(x => x.userId >= 5));// SetRows
+        setTotalCount(7);//=== set total page size for pagination part
         resolve();
-      }, 1000);
+        setLoading(false);
+      }, 2000);
     });
   }
 
@@ -71,26 +72,34 @@ function App() {
       active = false;
     }
   }, [filter]);
-  const _handlePageChange = ()=>{
-
+  const _handlePageChange = (newPage) => {
+    setFilter((p) => ({ ...p, pageNumber: newPage }));
   }
   return (
-    <div className="App">
+    <div className="app">
       <h1>an grid</h1>
-      <p>simple data grid with rtl and paging support</p>
+      <p>simple data grid with paging, sorting and rtl support</p>
       <hr />
       <h2>minimal feature</h2>
+      <AnGrid
+        columns={columns}
+        rows={rows}
+        showRowNumber={true}
+        disabledPaging={true}
+      />
       <h2>full feature</h2>
       <AnGrid
-        ref={table}
         loading={loading}
         columns={columns}
+        rows={rows}
         showRowNumber={true}
         pageSize={filter.pageSize}
         pageNumber={filter.pageNumber}
         totalCount={totalCount}
         onPageChange={_handlePageChange}
         theme="dark"
+        minHeight={300}
+        emptyList={<strong>There Is No Info</strong>}
       />
     </div>
   );

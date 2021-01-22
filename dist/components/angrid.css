@@ -3,7 +3,6 @@
   border-radius: 4px;
   -webkit-box-shadow: 0 2px 4px 2px #eee;
           box-shadow: 0 2px 4px 2px #eee;
-  min-height: 300;
   overflow-x: auto;
   width: 100%;
 }
@@ -12,12 +11,16 @@
   border-collapse: collapse;
   border-spacing: 0;
   min-width: 100%;
-  margin-bottom: 45px;
 }
 
 .angrid table thead th {
   padding: 15px 5px;
   text-align: center !important;
+}
+
+.angrid table thead th .sort-icon {
+  margin-left: 5px;
+  vertical-align: middle;
 }
 
 .angrid table tbody tr:nth-child(even) {
@@ -38,13 +41,46 @@
   color: #fff;
 }
 
-.angrid.dark .pagination {
+.angrid.dark .angrid-pagination {
+  height: 45px;
   background-color: #fff;
   color: #2e324a;
+  padding: 0 15px;
 }
 
-.angrid.dark .pagination button {
+.angrid.dark .angrid-pagination span,
+.angrid.dark .angrid-pagination strong {
+  padding: 0 10px;
+}
+
+.angrid.dark .angrid-pagination button {
   color: #2e324a;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 20px;
+  font-weight: 800;
+  padding: 0;
+  width: 30px;
+  height: 27px;
+  border-radius: 4px;
+  border: solid 1px #ccc;
+  padding-bottom: 4px;
+}
+
+.angrid.dark .angrid-pagination button:hover {
+  background-color: #eee;
+  cursor: pointer;
+}
+
+.angrid.dark .angrid-pagination button:focus {
+  outline: none;
 }
 
 .loader {
@@ -70,7 +106,7 @@
 .loader .spinner {
   border: 5px solid #f3f3f3;
   border-radius: 50%;
-  border-top: 5px solid #3498db;
+  border-top: 5px solid #666;
   width: 20px;
   height: 20px;
   -webkit-animation: spin 1s linear infinite;

@@ -2,18 +2,20 @@
   position: relative;
   border-radius: 4px;
   box-shadow: 0 2px 4px 2px #eee;
-  min-height: 300;
   overflow-x: auto;
   width: 100%;
   table {
     border-collapse: collapse;
     border-spacing: 0;
     min-width: 100%;
-    margin-bottom: 45px;
     thead {
       th {
         padding: 15px 5px;
         text-align: center !important;
+        .sort-icon{
+          margin-left: 5px;
+          vertical-align: middle;
+        }
       }
     }
     tbody {
@@ -31,18 +33,42 @@
       }
     }
   }
-  &.dark{
+  &.dark {
     table {
       thead {
         background-color: #546e7a;
         color: #fff;
       }
     }
-    .pagination {
+    .angrid-pagination {
+      height: 45px;
       background-color: #fff;
       color: #2e324a;
+      padding: 0 15px;
+      span,
+      strong {
+        padding: 0 10px;
+      }
       button {
         color: #2e324a;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 20px;
+        font-weight: 800;
+        padding: 0;
+        width: 30px;
+        height: 27px;
+        border-radius: 4px;
+        border: solid 1px #ccc;
+        padding-bottom: 4px;
+        &:hover {
+          background-color: #eee;
+          cursor: pointer;
+        }
+        &:focus{
+          outline: none;
+        }
       }
     }
   }
@@ -63,7 +89,7 @@
   .spinner {
     border: 5px solid #f3f3f3;
     border-radius: 50%;
-    border-top: 5px solid #3498db;
+    border-top: 5px solid #666;
     width: 20px;
     height: 20px;
     -webkit-animation: spin 1s linear infinite;

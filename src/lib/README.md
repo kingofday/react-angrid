@@ -1,4 +1,4 @@
-# react-angrid
+# Dillinger
 
 
 react-angrid is a free and light component in react for data grid with supporting:
