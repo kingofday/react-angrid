@@ -1,10 +1,11 @@
 import "./App.css";
 import React, { useState, useEffect } from "react";
-//import AnGrid from './components/AnGrid'
-import AnGrid from 'react-angrid';
+import AnGrid from './lib/index';
+//import AnGrid from 'react-angrid';
 import data from './data'
 
 function App() {
+  console.log("app")
   const [loading, setLoading] = useState(false);
   const [rows, setRows] = useState([]);
   const [filter, setFilter] = useState({
