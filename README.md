@@ -14,6 +14,7 @@ react-angrid requires react "^17.0.1", react-dome "^17.0.1" to run.
 npm i react-angrid --save
 ```
 
+![picture](sample.png)
 ### Usage
 Minimal Usage:
 
@@ -57,8 +58,8 @@ Advacesd Usage:
 ```
     import Angrid from "rect-angrid";
 
-...
-//some rewuired states
+    ...
+    //some required states
     const [loading, setLoading] = useState(false);
     const [rows, setRows] = useState([]);
     const [filter, setFilter] = useState({
@@ -93,7 +94,7 @@ Advacesd Usage:
       active = false;
     }
   }, [filter]);
-...
+    ...
       <AnGrid
         loading={loading}
         columns={columns}
@@ -109,7 +110,7 @@ Advacesd Usage:
       />
 
 ```
-####Props
+#### Props
 - **columns:** must be array of object like:
  ```
     [{
