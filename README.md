@@ -14,7 +14,7 @@ react-angrid requires react "^17.0.1", react-dome "^17.0.1" to run.
 npm i react-angrid --save
 ```
 
-![picture](sample.png)
+![sample](src/assets/sample.png)
 ### Usage
 Minimal Usage:
 
