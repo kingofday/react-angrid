@@ -13,13 +13,17 @@ const shortText = (text, length, appender) => {
 const AnGrid = /*#__PURE__*/forwardRef((props, ref) => {
   console.log(props.rows); //=== init
 
-  const formatData = rawData => [...rawData.map((r, idx) => ({
-    data: { ...r
-    },
-    hide: r.hide || false,
-    index: idx,
-    dataRowNumber: ((props.pageNumber || 1) - 1) * (props.pageSize || 9999) + idx + 1
-  }))];
+  const formatData = (data, formatted) => {
+    if (formatted) return [...data.map((r, idx) => ({ ...r,
+      dataRowNumber: ((props.pageNumber || 1) - 1) * (props.pageSize || 9999) + idx + 1
+    }))];else return [...data.map((r, idx) => ({
+      data: { ...r
+      },
+      hide: r.hide || false,
+      index: idx,
+      dataRowNumber: ((props.pageNumber || 1) - 1) * (props.pageSize || 9999) + idx + 1
+    }))];
+  };
 
   const strings = props.strings || {}; //=== Hooks
 
@@ -39,33 +43,29 @@ const AnGrid = /*#__PURE__*/forwardRef((props, ref) => {
 
     switch (col.sort) {
       case 1:
-        console.log('1');
         col.sort = 2;
         setColumns([...columns]);
-        setRows(r => [...r.sort((a, b) => {
+        setRows(r => formatData(r.sort((a, b) => {
           if (a.data[col.field].toString() < b.data[col.field].toString()) return -1;
           if (a.data[col.field].toString() > b.data[col.field].toString()) return 1;
           return 0;
-        })]);
+        }), true));
         break;
 
       case 2:
-        console.log('2');
-        console.log(props.rows);
         col.sort = 0;
         setColumns([...columns]);
         setRows(formatData(props.rows));
         break;
 
       default:
-        console.log('0');
         col.sort = 1;
         setColumns([...columns]);
-        setRows(r => [...r.sort((a, b) => {
+        setRows(r => formatData(r.sort((a, b) => {
           if (a.data[col.field].toString() < b.data[col.field].toString()) return 1;
           if (a.data[col.field].toString() > b.data[col.field].toString()) return -1;
           return 0;
-        })]);
+        }), true));
         break;
     }
   };

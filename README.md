@@ -6,6 +6,9 @@ react-angrid is a free and light component in react for data grid with supportin
   - paging 
   - sortable
   - rtl
+  - other language
+
+![sample](src/assets/sample.png)
 
 ## Installation
 
@@ -13,8 +16,6 @@ react-angrid requires react "^17.0.1", react-dome "^17.0.1" to run.
 ```
 npm i react-angrid --save
 ```
-
-![sample](src/assets/sample.png)
 ### Usage
 Minimal Usage:
 
@@ -134,11 +135,19 @@ Advacesd Usage:
 - **pageNumber:** the page Size of data,you can set it after api fetch(int)
 - **totalCount:** total count of data rows,you can set it after api fetch(int)
 - **onPageChange:** this is a function that triggers after changeing a page number in component and gives it new page number as parameter,you can use to call api and set new data
+- **strings:** an object of used strings that can be change in other languages:
+```
+{
+  notFound:'There Is No Data',
+  indexTitle:'Row Number',
+  pageNumber:'Page Number'
+}
+```
 - **emptyList:** a component that renred if rows length is zero
 - **minHeight:** minimum height of component(int, default 300px)
 - **theme:** theme for component(string,default is dark)
-- 
-#### Todos
+ 
+##### Todos
 
  - Add Responsive configuration
  - Add More Theme
