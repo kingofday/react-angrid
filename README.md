@@ -55,10 +55,28 @@ import Angrid from "rect-angrid";
       />
 ...
 ```
-Advacesd Usage:
+Advanced Usage:
 ```
     import Angrid from "rect-angrid";
 
+    const columns = [
+    {
+      field: "fullname",
+      headerName: "First & last Name",
+      description: "name of user",
+      width: 50,
+    },
+    {
+      field: "age",
+      headerName: "Age",
+      description: "age of user",
+      width: 50,
+      renderCell:(info)=><strong>Age is : {info.data.age}</strong>
+    },
+    .
+    .
+    .
+    ];
     ...
     //some required states
     const [loading, setLoading] = useState(false);

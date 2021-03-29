@@ -2,14 +2,7 @@ import React, { useState, useEffect, forwardRef, useImperativeHandle, } from "re
 import './angrid.css';
 import PropTypes from 'prop-types';
 
-const shortText = (text, length, appender) => {
-  let textLength = text.length;
-  if (textLength > length) return text.substring(0, length) + (appender || '...');
-  return text;
-}
-
 const AnGrid = forwardRef((props, ref) => {
-  console.log(props.rows);
   //=== init
   const formatData = (data, formatted) => {
     if (formatted)
@@ -37,7 +30,9 @@ const AnGrid = forwardRef((props, ref) => {
   useEffect(() => {
     setRows(formatData(props.rows));
   }, [props.rows]);
-
+  useEffect(() => {
+    setColumns(props.columns);
+  }, [props.columns]);
   //=== sort method
   const _hanndleSort = (field) => {
     let col = columns.find(x => x.field === field);
@@ -101,7 +96,7 @@ const AnGrid = forwardRef((props, ref) => {
   }));
 
   return (
-    <div className={`angrid ${(props.theme || 'dark')} ${props.className || null} ${rows.length === 0 ? "is-empty" : null}`} style={{ minHeight: props.minHeight || 300, paddingBottom: (props.disabledPaging ? 45 : 0) }}>
+    <div className={`angrid ${(props.theme || 'dark')} ${props.className || null} ${rows.length === 0 ? "is-empty" : null}`} style={{ minHeight: props.minHeight || 300, paddingBottom: (props.disabledPaging ? 0 : 45) }}>
       {!props.loading && rows.length === 0 ? (
         props.emptyList ? props.emptyList :
           <p className="empty">
@@ -129,7 +124,7 @@ const AnGrid = forwardRef((props, ref) => {
                     key={idx}
                     {...(c.sortable ? { onClick: () => _hanndleSort(c.field) } : {})}
                   >
-                    { shortText(c.headerName)}
+                    {c.headerName}
                     {c.sortable ? <span className='sort-icon'>↑↓</span> : null}
                   </th>
                 ))}
