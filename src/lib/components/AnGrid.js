@@ -166,7 +166,7 @@ const AnGrid = forwardRef((props, ref) => {
             >
               {"›"}
             </button>
-          </div> : null}
+          </div> : (props.customPagination || null)}
         </>
       ) : null
       }
