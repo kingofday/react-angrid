@@ -1,18 +1,10 @@
-function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 import React, { useState, useEffect, forwardRef, useImperativeHandle } from "react";
 import './angrid.css';
 import PropTypes from 'prop-types';
-
-const shortText = (text, length, appender) => {
-  let textLength = text.length;
-  if (textLength > length) return text.substring(0, length) + (appender || '...');
-  return text;
-};
-
 const AnGrid = /*#__PURE__*/forwardRef((props, ref) => {
-  console.log(props.rows); //=== init
-
+  //=== init
   const formatData = (data, formatted) => {
     if (formatted) return [...data.map((r, idx) => ({ ...r,
       dataRowNumber: ((props.pageNumber || 1) - 1) * (props.pageSize || 9999) + idx + 1
@@ -36,7 +28,10 @@ const AnGrid = /*#__PURE__*/forwardRef((props, ref) => {
 
   useEffect(() => {
     setRows(formatData(props.rows));
-  }, [props.rows]); //=== sort method
+  }, [props.rows]);
+  useEffect(() => {
+    setColumns(props.columns);
+  }, [props.columns]); //=== sort method
 
   const _hanndleSort = field => {
     let col = columns.find(x => x.field === field);
@@ -91,7 +86,7 @@ const AnGrid = /*#__PURE__*/forwardRef((props, ref) => {
     className: `angrid ${props.theme || 'dark'} ${props.className || null} ${rows.length === 0 ? "is-empty" : null}`,
     style: {
       minHeight: props.minHeight || 300,
-      paddingBottom: props.disabledPaging ? 45 : 0
+      paddingBottom: props.disabledPaging ? 0 : 45
     }
   }, !props.loading && rows.length === 0 ? props.emptyList ? props.emptyList : /*#__PURE__*/React.createElement("p", {
     className: "empty"
@@ -115,7 +110,7 @@ const AnGrid = /*#__PURE__*/forwardRef((props, ref) => {
     key: idx
   }, c.sortable ? {
     onClick: () => _hanndleSort(c.field)
-  } : {}), shortText(c.headerName), c.sortable ? /*#__PURE__*/React.createElement("span", {
+  } : {}), c.headerName, c.sortable ? /*#__PURE__*/React.createElement("span", {
     className: "sort-icon"
   }, "\u2191\u2193") : null)))), /*#__PURE__*/React.createElement("tbody", {
     className: "tbody"
@@ -125,7 +120,7 @@ const AnGrid = /*#__PURE__*/forwardRef((props, ref) => {
   }, props.showRowNumber ? /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("span", null, r.dataRowNumber)) : null, columns.map((c, j) => /*#__PURE__*/React.createElement("td", {
     className: c.cellClass ? c.cellClass(r) : "",
     key: j
-  }, c.renderCell ? c.renderCell(r) : /*#__PURE__*/React.createElement("span", null, r.data[c.field]))))))), !props.disabledPaging ? /*#__PURE__*/React.createElement("div", {
+  }, c.renderCell ? c.renderCell(r) : /*#__PURE__*/React.createElement("span", null, r.data[c.field]))))))), !props.disabledPaging ? props.customPagination || /*#__PURE__*/React.createElement("div", {
     className: "angrid-pagination"
   }, /*#__PURE__*/React.createElement("span", null, strings.pageNumber || "Page Number"), /*#__PURE__*/React.createElement("button", {
     onClick: () => _handlePageChange(props.pageNumber - 1),
