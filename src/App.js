@@ -102,6 +102,21 @@ function App() {
         minHeight={300}
         emptyList={<strong>There Is No Info</strong>}
       />
+      <h2>custome pagination</h2>
+      <AnGrid
+        loading={loading}
+        columns={columns}
+        rows={rows}
+        showRowNumber={true}
+        pageSize={filter.pageSize}
+        pageNumber={filter.pageNumber}
+        totalCount={totalCount}
+        onPageChange={_handlePageChange}
+        theme="dark"
+        minHeight={300}
+        emptyList={<strong>There Is No Info</strong>}
+        customPagination={<div>custom</div>}
+      />
     </div>
   );
 }

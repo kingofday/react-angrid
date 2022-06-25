@@ -151,22 +151,23 @@ const AnGrid = forwardRef((props, ref) => {
                 ))}
             </tbody>
           </table>
-          {!props.disabledPaging ? <div className='angrid-pagination'>
-            <span>{strings.pageNumber || "Page Number"}</span>
-            <button
-              onClick={() => _handlePageChange(props.pageNumber - 1)}
-              disabled={props.pageNumber === 1}
-            >
-              {"‹"}
-            </button>
-            <strong>{props.pageNumber}</strong>
-            <button
-              onClick={() => _handlePageChange(props.pageNumber + 1)}
-              disabled={props.pageNumber * props.pageSize > props.totalCount}
-            >
-              {"›"}
-            </button>
-          </div> : null}
+          {!props.disabledPaging ? props.customPagination ||
+            <div className='angrid-pagination'>
+              <span>{strings.pageNumber || "Page Number"}</span>
+              <button
+                onClick={() => _handlePageChange(props.pageNumber - 1)}
+                disabled={props.pageNumber === 1}
+              >
+                {"‹"}
+              </button>
+              <strong>{props.pageNumber}</strong>
+              <button
+                onClick={() => _handlePageChange(props.pageNumber + 1)}
+                disabled={props.pageNumber * props.pageSize > props.totalCount}
+              >
+                {"›"}
+              </button>
+            </div> : null}
         </>
       ) : null
       }
