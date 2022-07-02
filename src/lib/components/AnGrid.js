@@ -113,10 +113,10 @@ const AnGrid = forwardRef((props, ref) => {
           <table>
             <thead className='thead'>
               <tr>
-                <th
+                {props.showRowNumber ? <th
                   style={{ width: 25 }}
                   title={(strings.indexTitle || "Row Number")}
-                >#</th>
+                >#</th> : null}
                 {columns.map((c, idx) => (
                   <th
                     style={{ width: c.width || 85, cursor: c.sortable ? 'pointer' : 'auto' }}

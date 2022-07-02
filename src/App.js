@@ -117,7 +117,22 @@ function App() {
         emptyList={<strong>There Is No Info</strong>}
         customPagination={<div>custom</div>}
       />
+      <h2>Without row number</h2>
+      <AnGrid
+        loading={loading}
+        columns={columns}
+        rows={rows}
+        showRowNumber={false}
+        pageSize={filter.pageSize}
+        pageNumber={filter.pageNumber}
+        totalCount={totalCount}
+        onPageChange={_handlePageChange}
+        theme="dark"
+        minHeight={300}
+        emptyList={<strong>There Is No Info</strong>}
+      />
     </div>
+    
   );
 }
 
