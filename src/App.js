@@ -56,11 +56,11 @@ function App() {
     return new Promise((resolve) => {
       setLoading(true);
       setTimeout(() => {
-        if (filter.pageNumber === 1)
-          setRows(data.filter(x => x.userId < 5));// Set Rows
-        else
-          setRows(data.filter(x => x.userId >= 5));// SetRows
-        setTotalCount(7);//=== set total page size for pagination part
+        const { pageNumber, pageSize } = filter
+        const start = (pageNumber -1) * pageSize
+        const end = (pageNumber) * pageSize
+        setRows(data.slice(start, end));// SetRows
+        setTotalCount(data.length);//=== set total page size for pagination part
         resolve();
         setLoading(false);
       }, 2000);
@@ -75,6 +75,9 @@ function App() {
   }, [filter]);
   const _handlePageChange = (newPage) => {
     setFilter((p) => ({ ...p, pageNumber: newPage }));
+  }
+  const randomChangePageSize = ()=>{
+    setFilter((p) => ({ ...p, pageSize: Math.floor(Math.random() * 5 + 5) }));
   }
   return (
     <div className="app">
@@ -131,8 +134,24 @@ function App() {
         minHeight={300}
         emptyList={<strong>There Is No Info</strong>}
       />
+
+      <h2>with dynamic pageSize</h2>
+      <div onClick={randomChangePageSize}>click here to change page size randolmy</div>
+      <div>current pagesize {filter.pageSize}</div>
+      <AnGrid
+        loading={loading}
+        columns={columns}
+        rows={rows}
+        showRowNumber={false}
+        pageSize={filter.pageSize}
+        pageNumber={filter.pageNumber}
+        totalCount={totalCount}
+        onPageChange={_handlePageChange}
+        theme="dark"
+        minHeight={300}
+      />
     </div>
-    
+
   );
 }
 
