@@ -164,6 +164,7 @@ Advanced Usage:
 - **emptyList:** a component that renred if rows length is zero
 - **minHeight:** minimum height of component(int, default 300px)
 - **theme:** theme for component(string,default is dark)
+- **customPagination:** if exist, the component show up instead od default pagination
  
 ##### Todos
 
