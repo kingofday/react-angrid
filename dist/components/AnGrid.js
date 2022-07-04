@@ -96,12 +96,12 @@ const AnGrid = /*#__PURE__*/forwardRef((props, ref) => {
     className: "spinner"
   })) : null, rows.length !== 0 ? /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("table", null, /*#__PURE__*/React.createElement("thead", {
     className: "thead"
-  }, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", {
+  }, /*#__PURE__*/React.createElement("tr", null, props.showRowNumber ? /*#__PURE__*/React.createElement("th", {
     style: {
       width: 25
     },
     title: strings.indexTitle || "Row Number"
-  }, "#"), columns.map((c, idx) => /*#__PURE__*/React.createElement("th", _extends({
+  }, "#") : null, columns.map((c, idx) => /*#__PURE__*/React.createElement("th", _extends({
     style: {
       width: c.width || 85,
       cursor: c.sortable ? 'pointer' : 'auto'
