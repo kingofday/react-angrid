@@ -29,7 +29,7 @@ const AnGrid = forwardRef((props, ref) => {
 
   useEffect(() => {
     setRows(formatData(props.rows));
-  }, [props.rows]);
+  }, [props.rows, props.pageSize]);
   useEffect(() => {
     setColumns(props.columns);
   }, [props.columns]);
