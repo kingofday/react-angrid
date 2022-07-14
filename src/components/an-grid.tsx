@@ -1,4 +1,38 @@
-import { ReactNode } from 'react'
-import './angrid.scss'
+import { ReactElement, useState } from 'react'
+import styled from 'styled-components'
 
-export const Angrid = (): ReactNode => <div>45445</div>
+export interface Props {
+    className?: string
+    theme?: 'dark'
+    minHeight?: number
+}
+
+const Wrapper = styled.div<Props>`
+    min-height: ${(props): string =>
+        typeof props.minHeight === 'number' ? `${props.minHeight}px` : '300px'};
+    display: grid;
+`
+
+export const Angrid = (props: Props): ReactElement => {
+    const [rows, setRows] = useState([])
+    const { className, theme, minHeight } = props
+
+    return (
+        <Wrapper
+            className={`angrid ${theme || 'light'} ${className || 'no-class'} ${
+                rows.length === 0 ? 'is-empty' : 'not-empty'
+            }`}
+            minHeight={minHeight}
+        >
+            12121
+        </Wrapper>
+    )
+}
+
+const defaultProps: Props = {
+    className: '',
+    theme: 'dark',
+    minHeight: 300,
+}
+
+Angrid.defaultProps = defaultProps

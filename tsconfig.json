@@ -1,5 +1,6 @@
 {
     "compilerOptions": {
+        "types": ["node"],
         "outDir": "dist/esm",
         "module": "esnext",
         "target": "es5",
@@ -18,6 +19,7 @@
         "allowSyntheticDefaultImports": true,
         "allowJs": true
     },
+    "hooks": ["copy-files"],
     "include": ["src/**/*"],
     "exclude": ["node_modules", "dist/**/*"]
 }

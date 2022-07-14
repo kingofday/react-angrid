@@ -1,2 +1,3 @@
-import { ReactNode } from 'react';
-export declare const Angrid: () => ReactNode;
+import { ReactElement } from 'react';
+import './angrid.css';
+export declare const Angrid: () => ReactElement;
