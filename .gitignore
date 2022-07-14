@@ -1,6 +1,10 @@
 # Created by https://www.toptal.com/developers/gitignore/api/node,yarn,windows,linux,react
 # Edit at https://www.toptal.com/developers/gitignore?templates=node,yarn,windows,linux,react
 
+## example package ##
+/example/node_modules
+/example/build
+
 ### Linux ###
 *~
 
