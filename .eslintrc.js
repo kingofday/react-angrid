@@ -18,6 +18,28 @@ module.exports = {
     ],
     parser: '@typescript-eslint/parser',
     plugins: ['react', '@typescript-eslint', 'import', 'unicorn', 'jest'],
+    parserOptions: {
+        ecmaFeatures: {
+            jsx: true,
+        },
+        ecmaVersion: 'latest',
+        sourceType: 'module',
+    },
+
+    settings: {
+        'import/parsers': {
+            '@typescript-eslint/parser': ['.ts', '.tsx'],
+        },
+        'import/resolver': {
+            node: {
+                extensions: ['.ts', '.tsx'],
+            },
+        },
+
+        jest: {
+            version: 26,
+        },
+    },
     overrides: [
         {
             files: ['*.ts', '*.tsx'], // Your TypeScript files extension
