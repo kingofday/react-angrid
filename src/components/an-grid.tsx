@@ -1,38 +1,63 @@
-import { ReactElement, useState } from 'react'
+import { memo, ReactNode } from 'react'
 import styled from 'styled-components'
+import './angrid.css'
+import { Table } from './table'
 
-export interface Props {
+export const genericMemo: <T>(component: T) => T = memo
+export interface RowsType<T> {
+    [key: string]: T
+}
+export interface Columns {
+    field: string
+    headerName: string
+    description?: string
+    width?: number
+    sortable?: boolean
+}
+export interface PropsTypes {
     className?: string
-    theme?: 'dark'
+    theme?: 'dark' | 'light'
     minHeight?: number
+    emptyMessage?: string
+    columnNumberTitle?: string
+    showRowNumber: boolean
+    columns: Columns[]
 }
 
-const Wrapper = styled.div<Props>`
-    min-height: ${(props): string =>
-        typeof props.minHeight === 'number' ? `${props.minHeight}px` : '300px'};
+export interface Props extends PropsTypes {
+    rows: RowsType<string | number | ReactNode>[]
+}
+
+const Wrapper = styled.div<Pick<PropsTypes, 'minHeight'>>`
+    min-height: ${({ minHeight }): string =>
+        typeof minHeight === 'number' ? `${minHeight}px` : '300px'};
     display: grid;
 `
 
-export const Angrid = (props: Props): ReactElement => {
-    const [rows, setRows] = useState([])
-    const { className, theme, minHeight } = props
+const Main = ({
+    className = '',
+    theme = 'light',
+    minHeight = 300,
+    showRowNumber,
+    columnNumberTitle = '#',
+    columns = [],
+    emptyMessage = 'No Data',
+    rows = [],
+}: Props): JSX.Element => (
+    <Wrapper
+        className={`angrid ${theme} ${className} ${
+            rows.length === 0 ? 'is-empty' : 'not-empty'
+        }`}
+        minHeight={minHeight}
+    >
+        <Table
+            showRowNumber={showRowNumber}
+            columnNumberTitle={columnNumberTitle}
+            columns={columns}
+            emptyMessage={emptyMessage}
+            rows={rows}
+        />
+    </Wrapper>
+)
 
-    return (
-        <Wrapper
-            className={`angrid ${theme || 'light'} ${className || 'no-class'} ${
-                rows.length === 0 ? 'is-empty' : 'not-empty'
-            }`}
-            minHeight={minHeight}
-        >
-            12121
-        </Wrapper>
-    )
-}
-
-const defaultProps: Props = {
-    className: '',
-    theme: 'dark',
-    minHeight: 300,
-}
-
-Angrid.defaultProps = defaultProps
+export const Angrid = genericMemo(Main)

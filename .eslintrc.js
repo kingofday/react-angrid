@@ -69,6 +69,13 @@ module.exports = {
         'react/function-component-definition': 'off',
         'react/jsx-props-no-spreading': 'off',
         'react/react-in-jsx-scope': 'off',
+        'react/prop-types': 'off',
+        'react/require-default-props': [
+            'error',
+            {
+                functions: 'defaultArguments',
+            },
+        ],
         //import
         'import/no-unresolved': 'off',
         'import/no-duplicates': 'error',
@@ -85,7 +92,7 @@ module.exports = {
         ],
 
         //eslint
-        '@typescript-eslint/no-unused-expressions': ['error'],
+        '@typescript-eslint/no-unused-expressions': ['warn'],
         'no-param-reassign': 'off',
         'import/prefer-default-export': 'off',
         'no-restricted-imports': 'off',
