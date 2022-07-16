@@ -83,102 +83,126 @@ export const Main = ({
 
     return (
         <div className='paginate'>
-            {/* button select page */}
-            <div>
-                {showPageArrow && (
-                    <button
-                        onClick={(): void => pageChanging(PaginateType.PREV, 1)}
-                        type='button'
-                        className={page === 1 ? 'disabled' : ''}
-                    >
-                        <FiChevronLeft />
-                    </button>
+            <div className='paginateBox'>
+                {/* total record */}
+                {showTotalRecord && (
+                    <div className='textPage'>
+                        {titleTotalRecord}: {totalCount}
+                    </div>
                 )}
-
-                {showPageNumber && (
-                    <span>
-                        {slices.map((item) => (
-                            <button
-                                key={uuidv4()}
-                                className={item === page ? 'active' : ''}
-                                onClick={(): void =>
-                                    pageChanging(PaginateType.SELECT, item)
-                                }
-                                type='button'
-                            >
-                                {item}
-                            </button>
-                        ))}
-                    </span>
+                {/* current page */}
+                {showCurrentPage && (
+                    <div className='textPage'>
+                        {totalCount && totalCount > pageSize && (
+                            <>
+                                {titleCurrentPage}: {page}
+                            </>
+                        )}
+                    </div>
                 )}
-
-                {showPageArrow && (
-                    <button
-                        onClick={(): void => pageChanging(PaginateType.NEXT, 1)}
-                        type='button'
-                        className={page === totalPageCount ? 'disabled' : ''}
-                    >
-                        <FiChevronRight />
-                    </button>
+                {/* number of page */}
+                {showNumberOfPage && (
+                    <div className='textPage'>
+                        {totalCount && totalCount > pageSize && (
+                            <>
+                                {titleNumberOfPage}: {totalPageCount}
+                            </>
+                        )}
+                    </div>
                 )}
             </div>
-            {/* select page */}
-            {showPageSelect && (
-                <div className='selectPage'>
-                    <select
-                        value={page}
-                        onChange={(event): void =>
-                            pageChanging(
-                                PaginateType.SELECT,
-                                +event.target.value
-                            )
-                        }
-                    >
-                        {pages.map((item) => (
-                            <option value={item} key={uuidv4()}>
-                                {item}
-                            </option>
-                        ))}
-                    </select>
-                </div>
-            )}
-            {/* page range */}
-            {showPageRange && (
-                <div className='rangePage'>
-                    <select
-                        value={rangePageSize}
-                        onChange={(event): void =>
-                            setRangePageSize(+event.target.value)
-                        }
-                    >
-                        {range.map((item: number) => (
-                            <option value={item} key={uuidv4()}>
-                                {`${totalCount} / ${item}`}
-                            </option>
-                        ))}
-                    </select>
-                </div>
-            )}
-            {/* total record */}
-            {showTotalRecord && (
-                <div className='textPage'>
-                    {titleTotalRecord}: {totalCount}
-                </div>
-            )}
-            {/* current page */}
-            {showCurrentPage && (
-                <div className='textPage'>
-                    {titleCurrentPage}: {page}
-                </div>
-            )}
-            {/* number of page */}
-            {showNumberOfPage && (
-                <div className='textPage'>
-                    {titleNumberOfPage}: {totalPageCount}
+            {totalCount && totalCount > pageSize && (
+                <div className='paginateBox'>
+                    {/* button select page */}
+                    <div>
+                        {showPageArrow && (
+                            <button
+                                onClick={(): void =>
+                                    pageChanging(PaginateType.PREV, 1)
+                                }
+                                type='button'
+                                className={page === 1 ? 'disabled' : ''}
+                            >
+                                <FiChevronLeft />
+                            </button>
+                        )}
+
+                        {showPageNumber && (
+                            <span>
+                                {slices.map((item) => (
+                                    <button
+                                        key={uuidv4()}
+                                        className={
+                                            item === page ? 'active' : ''
+                                        }
+                                        onClick={(): void =>
+                                            pageChanging(
+                                                PaginateType.SELECT,
+                                                item
+                                            )
+                                        }
+                                        type='button'
+                                    >
+                                        {item}
+                                    </button>
+                                ))}
+                            </span>
+                        )}
+
+                        {showPageArrow && (
+                            <button
+                                onClick={(): void =>
+                                    pageChanging(PaginateType.NEXT, 1)
+                                }
+                                type='button'
+                                className={
+                                    page === totalPageCount ? 'disabled' : ''
+                                }
+                            >
+                                <FiChevronRight />
+                            </button>
+                        )}
+                    </div>
+                    {/* select page */}
+                    {showPageSelect && (
+                        <div className='selectPage'>
+                            <select
+                                value={page}
+                                onChange={(event): void =>
+                                    pageChanging(
+                                        PaginateType.SELECT,
+                                        +event.target.value
+                                    )
+                                }
+                            >
+                                {pages.map((item) => (
+                                    <option value={item} key={uuidv4()}>
+                                        {item}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
+                    )}
+                    {/* page range */}
+                    {showPageRange && (
+                        <div className='rangePage'>
+                            <select
+                                value={rangePageSize}
+                                onChange={(event): void =>
+                                    setRangePageSize(+event.target.value)
+                                }
+                            >
+                                {range.map((item: number) => (
+                                    <option value={item} key={uuidv4()}>
+                                        {`${totalCount} / ${item}`}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
+                    )}
                 </div>
             )}
         </div>
     )
 }
-
 export const Paginate = memo(Main)

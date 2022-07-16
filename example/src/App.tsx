@@ -45,7 +45,7 @@ const createUsers = (numUsers = 10) => {
 
 function App() {
     return (
-        <div className='App'>
+        <div className='App' dir=''>
             <Angrid
                 showRowNumber
                 columns={columns}

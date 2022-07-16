@@ -64,8 +64,13 @@
             padding: 10px;
             border-top: thin solid #ddd;
             display: flex;
+            justify-content: space-between;
             flex-direction: row;
             background-color: #f7f7f7;
+            .paginateBox {
+                display: flex;
+                flex-direction: row;
+            }
             button {
                 cursor: pointer;
                 width: 42px;
@@ -166,11 +171,9 @@
                 }
             }
             .textPage {
-                margin-left: 5px;
-                margin-right: 5px;
                 font-size: 14px;
                 color: #5a667f;
-                margin-top: 16px;
+                margin: 18px 5px;
             }
         }
     }

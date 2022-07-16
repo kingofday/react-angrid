@@ -74,7 +74,7 @@ var Main = function (_a) {
     }, [pageSize]);
     return ((0, jsx_runtime_1.jsx)(Wrapper, __assign({ className: "angrid ".concat(theme, " ").concat(className), minHeight: minHeight }, { children: (0, jsx_runtime_1.jsxs)("div", __assign({ className: 'asax' }, { children: [(0, jsx_runtime_1.jsx)(table_1.Table, { className: bordered ? 'bordered' : '', showRowNumber: showRowNumber, columnNumberTitle: columnNumberTitle, columns: columns, emptyMessage: emptyMessage, rows: isRow, empty: isEmpty, loading: isLoading, sortable: function (value, sort) {
                         return sortRows(value, sort);
-                    } }), !isEmpty && totalCount && totalCount > pageSize && ((0, jsx_runtime_1.jsx)(paginate_1.Paginate, { totalCount: totalCount, pageSize: isSize, onPageChange: onPageChange, range: range, showTotalRecord: showTotalRecord, titleTotalRecord: titleTotalRecord, showCurrentPage: showCurrentPage, titleCurrentPage: titleCurrentPage, showNumberOfPage: showNumberOfPage, titleNumberOfPage: titleNumberOfPage, showPageRange: showPageRange, showPageSelect: showPageSelect, showPageNumber: showPageNumber, showPageArrow: showPageArrow }))] })) })));
+                    } }), !isEmpty && ((0, jsx_runtime_1.jsx)(paginate_1.Paginate, { totalCount: totalCount, pageSize: isSize, onPageChange: onPageChange, range: range, showTotalRecord: showTotalRecord, titleTotalRecord: titleTotalRecord, showCurrentPage: showCurrentPage, titleCurrentPage: titleCurrentPage, showNumberOfPage: showNumberOfPage, titleNumberOfPage: titleNumberOfPage, showPageRange: showPageRange, showPageSelect: showPageSelect, showPageNumber: showPageNumber, showPageArrow: showPageArrow }))] })) })));
 };
 exports.Angrid = (0, react_1.memo)(Main);
 var templateObject_1;

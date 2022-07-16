@@ -68,7 +68,7 @@ var Main = function (_a) {
     }, [pageSize]);
     return (_jsx(Wrapper, __assign({ className: "angrid ".concat(theme, " ").concat(className), minHeight: minHeight }, { children: _jsxs("div", __assign({ className: 'asax' }, { children: [_jsx(Table, { className: bordered ? 'bordered' : '', showRowNumber: showRowNumber, columnNumberTitle: columnNumberTitle, columns: columns, emptyMessage: emptyMessage, rows: isRow, empty: isEmpty, loading: isLoading, sortable: function (value, sort) {
                         return sortRows(value, sort);
-                    } }), !isEmpty && totalCount && totalCount > pageSize && (_jsx(Paginate, { totalCount: totalCount, pageSize: isSize, onPageChange: onPageChange, range: range, showTotalRecord: showTotalRecord, titleTotalRecord: titleTotalRecord, showCurrentPage: showCurrentPage, titleCurrentPage: titleCurrentPage, showNumberOfPage: showNumberOfPage, titleNumberOfPage: titleNumberOfPage, showPageRange: showPageRange, showPageSelect: showPageSelect, showPageNumber: showPageNumber, showPageArrow: showPageArrow }))] })) })));
+                    } }), !isEmpty && (_jsx(Paginate, { totalCount: totalCount, pageSize: isSize, onPageChange: onPageChange, range: range, showTotalRecord: showTotalRecord, titleTotalRecord: titleTotalRecord, showCurrentPage: showCurrentPage, titleCurrentPage: titleCurrentPage, showNumberOfPage: showNumberOfPage, titleNumberOfPage: titleNumberOfPage, showPageRange: showPageRange, showPageSelect: showPageSelect, showPageNumber: showPageNumber, showPageArrow: showPageArrow }))] })) })));
 };
 export var Angrid = memo(Main);
 var templateObject_1;

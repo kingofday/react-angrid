@@ -139,7 +139,7 @@ const Main = ({
                     }
                 />
 
-                {!isEmpty && totalCount && totalCount > pageSize && (
+                {!isEmpty && (
                     <Paginate
                         totalCount={totalCount}
                         pageSize={isSize}
