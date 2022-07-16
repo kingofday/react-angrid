@@ -4,7 +4,7 @@ export type IsEmptyProps = {
     message: string
 }
 
-export const IsEmpty: React.FC<IsEmptyProps> = ({ message }) => (
+export const IsEmpty: React.FC<IsEmptyProps> = ({ message = 'No Data' }) => (
     <div>
         <span>{message}</span>
     </div>

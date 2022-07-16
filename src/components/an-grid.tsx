@@ -1,9 +1,9 @@
-import { memo, ReactNode } from 'react'
+import { memo, ReactNode, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import './angrid.css'
+import { Paginate } from './paginate'
 import { Table } from './table'
 
-export const genericMemo: <T>(component: T) => T = memo
 export interface RowsType<T> {
     [key: string]: T
 }
@@ -22,11 +22,15 @@ export interface PropsTypes {
     columnNumberTitle?: string
     showRowNumber: boolean
     columns: Columns[]
+    rows: RowsType<string | number | ReactNode>[]
+    totalCount: number | undefined
+    pageSize?: number
+    loading?: boolean | 0
+    defaultPageSize?: number
+    onPageChange: (current: number, size: number) => void
 }
 
-export interface Props extends PropsTypes {
-    rows: RowsType<string | number | ReactNode>[]
-}
+const range = [10, 20, 50, 100, 200, 500]
 
 const Wrapper = styled.div<Pick<PropsTypes, 'minHeight'>>`
     min-height: ${({ minHeight }): string =>
@@ -43,21 +47,71 @@ const Main = ({
     columns = [],
     emptyMessage = 'No Data',
     rows = [],
-}: Props): JSX.Element => (
-    <Wrapper
-        className={`angrid ${theme} ${className} ${
-            rows.length === 0 ? 'is-empty' : 'not-empty'
-        }`}
-        minHeight={minHeight}
-    >
-        <Table
-            showRowNumber={showRowNumber}
-            columnNumberTitle={columnNumberTitle}
-            columns={columns}
-            emptyMessage={emptyMessage}
-            rows={rows}
-        />
-    </Wrapper>
-)
+    totalCount = 1,
+    loading = 0,
+    pageSize = 20,
+    defaultPageSize = 20,
+    onPageChange,
+}: PropsTypes): JSX.Element => {
+    const [isLoading, setIsLoading] = useState(true)
+    const [isEmpty, setIsEmpty] = useState(false)
+    const [isRow, setIsRow] = useState<PropsTypes['rows']>([])
+    const [isSize, setIsSize] = useState(20)
 
-export const Angrid = genericMemo(Main)
+    useEffect(() => {
+        if (typeof loading !== 'number') {
+            setIsLoading(loading)
+            if (rows.length === 0) {
+                setIsEmpty(true)
+            } else {
+                setIsEmpty(false)
+                setIsRow(rows)
+            }
+        } else {
+            setIsLoading(false)
+            if (rows.length === 0) {
+                setIsEmpty(true)
+            } else {
+                setIsEmpty(false)
+                setIsRow(rows)
+            }
+        }
+    }, [loading, rows])
+
+    useEffect(() => {
+        if (defaultPageSize && range.includes(defaultPageSize)) {
+            setIsSize(defaultPageSize)
+        }
+    }, [defaultPageSize])
+
+    return (
+        <Wrapper
+            className={`angrid ${theme} ${className} ${
+                rows.length === 0 ? 'is-empty' : 'not-empty'
+            }`}
+            minHeight={minHeight}
+        >
+            <Table
+                showRowNumber={showRowNumber}
+                columnNumberTitle={columnNumberTitle}
+                columns={columns}
+                emptyMessage={emptyMessage}
+                rows={isRow}
+                empty={isEmpty}
+                loading={isLoading}
+            />
+
+            {!isEmpty && totalCount > pageSize && (
+                <Paginate
+                    totalCount={totalCount}
+                    pageSize={pageSize}
+                    onPageChange={onPageChange}
+                    defaultPageSize={isSize}
+                    range={range}
+                />
+            )}
+        </Wrapper>
+    )
+}
+
+export const Angrid = memo(Main)

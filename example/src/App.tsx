@@ -37,14 +37,21 @@ const createUser = () => {
     }
 }
 
-const createUsers = (numUsers = 5) => {
+const createUsers = (numUsers = 10) => {
     return Array.from({ length: numUsers }, createUser)
 }
 
 function App() {
     return (
         <div className='App'>
-            <Angrid showRowNumber columns={columns} rows={createUsers()} />
+            <Angrid
+                showRowNumber
+                columns={columns}
+                rows={createUsers()}
+                totalCount={100}
+                onPageChange={(page, size) => console.log(page, size)}
+                defaultPageSize={100}
+            />
         </div>
     )
 }

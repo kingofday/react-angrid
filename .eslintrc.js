@@ -14,10 +14,18 @@ module.exports = {
         'plugin:import/typescript',
         'plugin:jsx-a11y/recommended',
         'plugin:unicorn/recommended',
+        'plugin:react-hooks/recommended',
         'prettier',
     ],
     parser: '@typescript-eslint/parser',
-    plugins: ['react', '@typescript-eslint', 'import', 'unicorn', 'jest'],
+    plugins: [
+        'react',
+        '@typescript-eslint',
+        'import',
+        'unicorn',
+        'jest',
+        'react-hooks',
+    ],
     parserOptions: {
         ecmaFeatures: {
             jsx: true,

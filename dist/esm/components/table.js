@@ -13,13 +13,14 @@ var __assign = (this && this.__assign) || function () {
     };
     return __assign.apply(this, arguments);
 };
-import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
+import { jsx as _jsx, jsxs as _jsxs, Fragment as _Fragment } from "react/jsx-runtime";
 /* eslint-disable @typescript-eslint/no-unsafe-return */
 import { memo } from 'react';
 import styled from 'styled-components';
 import { v4 as uuidv4 } from 'uuid';
-export var genericMemo = memo;
-var Tr = styled.tr(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n    cursor: ", ";\n    width: ", ";\n"], ["\n    cursor: ", ";\n    width: ", ";\n"])), function (_a) {
+import { IsEmpty } from './is-empty';
+import { Loading } from './loading';
+var Th = styled.th(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n    cursor: ", ";\n    width: ", ";\n"], ["\n    cursor: ", ";\n    width: ", ";\n"])), function (_a) {
     var sortable = _a.sortable;
     return typeof sortable === 'boolean' ? 'pointer' : 'default';
 }, function (_a) {
@@ -27,10 +28,8 @@ var Tr = styled.tr(templateObject_1 || (templateObject_1 = __makeTemplateObject(
     return typeof width === 'number' ? "".concat(width, "px") : '85px';
 });
 export var Main = function (_a) {
-    var showRowNumber = _a.showRowNumber, columnNumberTitle = _a.columnNumberTitle, columns = _a.columns, rows = _a.rows;
-    return (_jsxs("table", { children: [_jsxs("thead", __assign({ className: 'thead' }, { children: [_jsx("tr", { children: showRowNumber && (_jsx("th", __assign({ style: { width: 25 } }, { children: columnNumberTitle }))) }), columns === null || columns === void 0 ? void 0 : columns.map(function (column) { return (_jsx(Tr, __assign({ title: column.description, sortable: column.sortable, width: column.width }, { children: _jsx("th", { children: column.headerName }) }), uuidv4())); })] })), _jsx("tbody", __assign({ className: 'tbody' }, { children: rows === null || rows === void 0 ? void 0 : rows.map(function (row) { return (_jsxs("tr", { children: [showRowNumber && _jsx("td", { children: rows.indexOf(row) + 1 }), columns === null || columns === void 0 ? void 0 : columns.map(function (c) { return (
-                        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-                        _jsx("td", { children: row[c.field] }, uuidv4())); })] }, uuidv4())); }) }))] }));
+    var showRowNumber = _a.showRowNumber, columnNumberTitle = _a.columnNumberTitle, columns = _a.columns, rows = _a.rows, empty = _a.empty, _b = _a.emptyMessage, emptyMessage = _b === void 0 ? 'no data' : _b, loading = _a.loading;
+    return (_jsxs(_Fragment, { children: [loading && _jsx(Loading, {}), _jsxs("table", __assign({ style: { width: '100%' } }, { children: [empty && !loading && _jsx(IsEmpty, { message: emptyMessage }), !empty && !loading && (_jsxs(_Fragment, { children: [_jsx("thead", __assign({ className: 'thead' }, { children: _jsxs("tr", { children: [showRowNumber && (_jsx("th", __assign({ style: { width: 25 } }, { children: columnNumberTitle }))), columns === null || columns === void 0 ? void 0 : columns.map(function (column) { return (_jsx(Th, __assign({ title: column.description, sortable: column.sortable, width: column.width }, { children: column.headerName }), uuidv4())); })] }) })), _jsx("tbody", __assign({ className: 'tbody' }, { children: rows === null || rows === void 0 ? void 0 : rows.map(function (row) { return (_jsxs("tr", { children: [showRowNumber && (_jsx("td", { children: rows.indexOf(row) + 1 })), columns === null || columns === void 0 ? void 0 : columns.map(function (c) { return (_jsx("td", { children: row[c.field] }, uuidv4())); })] }, uuidv4())); }) }))] }))] }))] }));
 };
-export var Table = genericMemo(Main);
+export var Table = memo(Main);
 var templateObject_1;
