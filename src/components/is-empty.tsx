@@ -1,12 +1,13 @@
+import type { Locale } from './an-grid'
 import { EmptyIcon } from './icons'
 
 // todo type from angrid component
 export type IsEmptyProps = {
     className?: string
-    message: string
+    lang: Locale
 }
 
-export const IsEmpty: React.FC<IsEmptyProps> = ({ message = 'No Data' }) => (
+export const IsEmpty: React.FC<IsEmptyProps> = ({ lang }) => (
     <div className='isEmpty'>
         <EmptyIcon />
         <div
@@ -15,7 +16,7 @@ export const IsEmpty: React.FC<IsEmptyProps> = ({ message = 'No Data' }) => (
                 textAlign: 'center',
             }}
         >
-            {message}
+            {lang.empty}
         </div>
     </div>
 )

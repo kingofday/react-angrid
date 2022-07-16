@@ -1,12 +1,19 @@
 import { memo, useCallback, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import './angrid.css'
+import { locale } from './locale'
 import { Paginate } from './paginate'
 import { Table } from './table'
 
 export interface RowsType<T> {
     [key: string]: T
 }
+
+export type Locale = {
+    [key: string]: string
+}
+
+export type Lang = keyof typeof locale
 export interface Columns {
     field: string
     headerName: string
@@ -18,7 +25,6 @@ export interface PropsTypes {
     className?: string
     theme?: 'dark' | 'light'
     minHeight?: number
-    emptyMessage?: string
     columnNumberTitle?: string
     showRowNumber: boolean
     columns: Columns[]
@@ -27,16 +33,15 @@ export interface PropsTypes {
     pageSize?: number
     loading?: boolean | 0
     showTotalRecord?: boolean
-    titleTotalRecord?: string
     showCurrentPage?: boolean
-    titleCurrentPage?: string
     showNumberOfPage?: boolean
-    titleNumberOfPage?: string
     showPageRange?: boolean
     showPageSelect?: boolean
     showPageNumber?: boolean
     showPageArrow?: boolean
     bordered?: boolean
+    rtl?: boolean
+    language?: Lang
     onPageChange: (current: number, size: number) => void
 }
 
@@ -55,28 +60,27 @@ const Main = ({
     showRowNumber,
     columnNumberTitle = '#',
     columns,
-    emptyMessage = 'No Data',
     rows,
     totalCount,
     loading = 0,
     pageSize = 20,
     onPageChange,
     showTotalRecord = false,
-    titleTotalRecord = 'Total Record',
     showCurrentPage = false,
-    titleCurrentPage = 'Current Page',
     showNumberOfPage = false,
-    titleNumberOfPage = 'Number of Page',
     showPageRange = true,
     showPageSelect = true,
     showPageNumber = true,
     showPageArrow = true,
     bordered = false,
+    rtl = false,
+    language = 'en',
 }: PropsTypes): JSX.Element => {
     const [isLoading, setIsLoading] = useState(true)
     const [isEmpty, setIsEmpty] = useState(false)
     const [isRow, setIsRow] = useState<PropsTypes['rows']>([])
     const [isSize, setIsSize] = useState(20)
+    const [lang, setLang] = useState(locale.en)
 
     const sortRows = useCallback(
         (value: string, desc: boolean): void => {
@@ -119,18 +123,24 @@ const Main = ({
         }
     }, [pageSize])
 
+    useEffect(() => {
+        if (language) {
+            setLang(locale[language])
+        }
+    }, [language])
+
     return (
         <Wrapper
-            className={`angrid ${theme} ${className}`}
+            className={`${rtl ? 'angridRtl' : 'angrid'} ${theme} ${className}`}
             minHeight={minHeight}
         >
             <div className='asax'>
                 <Table
+                    lang={lang}
                     className={bordered ? 'bordered' : ''}
                     showRowNumber={showRowNumber}
                     columnNumberTitle={columnNumberTitle}
                     columns={columns}
-                    emptyMessage={emptyMessage}
                     rows={isRow}
                     empty={isEmpty}
                     loading={isLoading}
@@ -141,16 +151,15 @@ const Main = ({
 
                 {!isEmpty && (
                     <Paginate
+                        lang={lang}
+                        rtl={rtl}
                         totalCount={totalCount}
                         pageSize={isSize}
                         onPageChange={onPageChange}
                         range={range}
                         showTotalRecord={showTotalRecord}
-                        titleTotalRecord={titleTotalRecord}
                         showCurrentPage={showCurrentPage}
-                        titleCurrentPage={titleCurrentPage}
                         showNumberOfPage={showNumberOfPage}
-                        titleNumberOfPage={titleNumberOfPage}
                         showPageRange={showPageRange}
                         showPageSelect={showPageSelect}
                         showPageNumber={showPageNumber}

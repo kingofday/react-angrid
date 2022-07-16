@@ -29,9 +29,9 @@ var Th = styled.th(templateObject_1 || (templateObject_1 = __makeTemplateObject(
     return typeof width === 'number' ? "".concat(width, "px") : '85px';
 });
 export var Main = function (_a) {
-    var showRowNumber = _a.showRowNumber, columnNumberTitle = _a.columnNumberTitle, columns = _a.columns, rows = _a.rows, empty = _a.empty, _b = _a.emptyMessage, emptyMessage = _b === void 0 ? 'no data' : _b, loading = _a.loading, className = _a.className, sortable = _a.sortable;
-    var _c = useState(false), isSort = _c[0], setIsSort = _c[1];
-    var _d = useState(''), isSortField = _d[0], setIsSortField = _d[1];
+    var showRowNumber = _a.showRowNumber, columnNumberTitle = _a.columnNumberTitle, columns = _a.columns, rows = _a.rows, empty = _a.empty, loading = _a.loading, className = _a.className, lang = _a.lang, sortable = _a.sortable;
+    var _b = useState(false), isSort = _b[0], setIsSort = _b[1];
+    var _c = useState(''), isSortField = _c[0], setIsSortField = _c[1];
     var handleSort = useCallback(function (value) {
         setIsSort(!isSort);
         setIsSortField(value);
@@ -41,7 +41,7 @@ export var Main = function (_a) {
                                                     return handleSort(column.field);
                                                 } }, { children: isSort &&
                                                     isSortField === column.field ? (_jsx(BiSortDown, {})) : (_jsx(BiSortUp, {})) })))] }), uuidv4())); })] }) }), _jsxs("tbody", __assign({ className: 'tbody' }, { children: [!empty &&
-                                    (rows === null || rows === void 0 ? void 0 : rows.map(function (row) { return (_jsxs("tr", { children: [showRowNumber && (_jsx("td", { children: rows.indexOf(row) + 1 })), columns === null || columns === void 0 ? void 0 : columns.map(function (c) { return (_jsx("td", { children: row[c.field] }, uuidv4())); })] }, uuidv4())); })), _jsx("tr", { children: _jsx("td", { children: empty && (_jsx(IsEmpty, { message: emptyMessage })) }) })] }))] })) }))] })));
+                                    (rows === null || rows === void 0 ? void 0 : rows.map(function (row) { return (_jsxs("tr", { children: [showRowNumber && (_jsx("td", { children: rows.indexOf(row) + 1 })), columns === null || columns === void 0 ? void 0 : columns.map(function (c) { return (_jsx("td", { children: row[c.field] }, uuidv4())); })] }, uuidv4())); })), _jsx("tr", { children: _jsx("td", { children: empty && _jsx(IsEmpty, { lang: lang }) }) })] }))] })) }))] })));
 };
 export var Table = memo(Main);
 var templateObject_1;

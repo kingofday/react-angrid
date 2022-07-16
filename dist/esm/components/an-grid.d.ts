@@ -1,7 +1,12 @@
 import './angrid.css';
+import { locale } from './locale';
 export interface RowsType<T> {
     [key: string]: T;
 }
+export declare type Locale = {
+    [key: string]: string;
+};
+export declare type Lang = keyof typeof locale;
 export interface Columns {
     field: string;
     headerName: string;
@@ -13,7 +18,6 @@ export interface PropsTypes {
     className?: string;
     theme?: 'dark' | 'light';
     minHeight?: number;
-    emptyMessage?: string;
     columnNumberTitle?: string;
     showRowNumber: boolean;
     columns: Columns[];
@@ -22,16 +26,15 @@ export interface PropsTypes {
     pageSize?: number;
     loading?: boolean | 0;
     showTotalRecord?: boolean;
-    titleTotalRecord?: string;
     showCurrentPage?: boolean;
-    titleCurrentPage?: string;
     showNumberOfPage?: boolean;
-    titleNumberOfPage?: string;
     showPageRange?: boolean;
     showPageSelect?: boolean;
     showPageNumber?: boolean;
     showPageArrow?: boolean;
     bordered?: boolean;
+    rtl?: boolean;
+    language?: Lang;
     onPageChange: (current: number, size: number) => void;
 }
-export declare const Angrid: import("react").MemoExoticComponent<({ className, theme, minHeight, showRowNumber, columnNumberTitle, columns, emptyMessage, rows, totalCount, loading, pageSize, onPageChange, showTotalRecord, titleTotalRecord, showCurrentPage, titleCurrentPage, showNumberOfPage, titleNumberOfPage, showPageRange, showPageSelect, showPageNumber, showPageArrow, bordered, }: PropsTypes) => JSX.Element>;
+export declare const Angrid: import("react").MemoExoticComponent<({ className, theme, minHeight, showRowNumber, columnNumberTitle, columns, rows, totalCount, loading, pageSize, onPageChange, showTotalRecord, showCurrentPage, showNumberOfPage, showPageRange, showPageSelect, showPageNumber, showPageArrow, bordered, rtl, language, }: PropsTypes) => JSX.Element>;

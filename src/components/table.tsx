@@ -3,14 +3,15 @@ import { memo, useCallback, useState } from 'react'
 import { BiSortDown, BiSortUp } from 'react-icons/bi'
 import styled from 'styled-components'
 import { v4 as uuidv4 } from 'uuid'
-import type { Columns, PropsTypes } from './an-grid'
+import type { Columns, Locale, PropsTypes } from './an-grid'
 import { IsEmpty } from './is-empty'
 import { Loading } from './loading'
 
-type Props = {
+type Props = Partial<PropsTypes> & {
     empty: boolean
     loading: boolean
     sortable: (value: string, sort: boolean) => void
+    lang: Locale
 }
 
 const Th = styled.th<Pick<Columns, 'sortable' | 'width'>>`
@@ -26,11 +27,11 @@ export const Main = ({
     columns,
     rows,
     empty,
-    emptyMessage = 'no data',
     loading,
     className,
+    lang,
     sortable,
-}: Partial<PropsTypes> & Props): JSX.Element => {
+}: Props): JSX.Element => {
     const [isSort, setIsSort] = useState<boolean>(false)
     const [isSortField, setIsSortField] = useState<string>('')
 
@@ -85,7 +86,7 @@ export const Main = ({
                                 ))}
                             </tr>
                         </thead>
-                        {/* <IsEmpty message={emptyMessage} /> */}
+
                         <tbody className='tbody'>
                             {!empty &&
                                 rows?.map((row) => (
@@ -101,11 +102,7 @@ export const Main = ({
                                     </tr>
                                 ))}
                             <tr>
-                                <td>
-                                    {empty && (
-                                        <IsEmpty message={emptyMessage} />
-                                    )}
-                                </td>
+                                <td>{empty && <IsEmpty lang={lang} />}</td>
                             </tr>
                         </tbody>
                     </>

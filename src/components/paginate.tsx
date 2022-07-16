@@ -1,7 +1,7 @@
 import { memo, useCallback, useEffect, useState } from 'react'
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi'
 import { v4 as uuidv4 } from 'uuid'
-import type { PropsTypes } from './an-grid'
+import type { Locale, PropsTypes } from './an-grid'
 import { usePagination } from './use-pagination'
 
 enum PaginateType {
@@ -12,6 +12,7 @@ enum PaginateType {
 
 type Props = Partial<PropsTypes> & {
     range: number[]
+    lang: Locale
 }
 
 export const Main = ({
@@ -20,15 +21,14 @@ export const Main = ({
     onPageChange,
     range,
     showTotalRecord,
-    titleTotalRecord,
     showCurrentPage,
-    titleCurrentPage,
     showNumberOfPage,
-    titleNumberOfPage,
     showPageRange,
     showPageSelect,
     showPageNumber,
     showPageArrow,
+    lang,
+    rtl,
 }: Props): JSX.Element => {
     const [page, setPage] = useState(1)
     const [slices, setSlices] = useState<number[]>([])
@@ -87,7 +87,9 @@ export const Main = ({
                 {/* total record */}
                 {showTotalRecord && (
                     <div className='textPage'>
-                        {titleTotalRecord}: {totalCount}
+                        <div>
+                            {lang.total}:{totalCount}
+                        </div>
                     </div>
                 )}
                 {/* current page */}
@@ -95,7 +97,7 @@ export const Main = ({
                     <div className='textPage'>
                         {totalCount && totalCount > pageSize && (
                             <>
-                                {titleCurrentPage}: {page}
+                                {lang.current}: {page}
                             </>
                         )}
                     </div>
@@ -105,7 +107,7 @@ export const Main = ({
                     <div className='textPage'>
                         {totalCount && totalCount > pageSize && (
                             <>
-                                {titleNumberOfPage}: {totalPageCount}
+                                {lang.number}: {totalPageCount}
                             </>
                         )}
                     </div>
@@ -123,7 +125,7 @@ export const Main = ({
                                 type='button'
                                 className={page === 1 ? 'disabled' : ''}
                             >
-                                <FiChevronLeft />
+                                {rtl ? <FiChevronRight /> : <FiChevronLeft />}
                             </button>
                         )}
 
@@ -159,7 +161,7 @@ export const Main = ({
                                     page === totalPageCount ? 'disabled' : ''
                                 }
                             >
-                                <FiChevronRight />
+                                {rtl ? <FiChevronLeft /> : <FiChevronRight />}
                             </button>
                         )}
                     </div>
@@ -194,7 +196,9 @@ export const Main = ({
                             >
                                 {range.map((item: number) => (
                                     <option value={item} key={uuidv4()}>
-                                        {`${totalCount} / ${item}`}
+                                        {rtl
+                                            ? `${item} / ${totalCount}`
+                                            : `${totalCount} / ${item}`}
                                     </option>
                                 ))}
                             </select>

@@ -15,10 +15,10 @@ exports.IsEmpty = void 0;
 var jsx_runtime_1 = require("react/jsx-runtime");
 var icons_1 = require("./icons");
 var IsEmpty = function (_a) {
-    var _b = _a.message, message = _b === void 0 ? 'No Data' : _b;
+    var lang = _a.lang;
     return ((0, jsx_runtime_1.jsxs)("div", __assign({ className: 'isEmpty' }, { children: [(0, jsx_runtime_1.jsx)(icons_1.EmptyIcon, {}), (0, jsx_runtime_1.jsx)("div", __assign({ style: {
                     color: 'rgb(149 147 147)',
                     textAlign: 'center',
-                } }, { children: message }))] })));
+                } }, { children: lang.empty }))] })));
 };
 exports.IsEmpty = IsEmpty;

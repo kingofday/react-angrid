@@ -39,14 +39,16 @@ const createUser = () => {
     }
 }
 
-const createUsers = (numUsers = 10) => {
+const createUsers = (numUsers = 30) => {
     return Array.from({ length: numUsers }, createUser)
 }
 
 function App() {
     return (
-        <div className='App' dir=''>
+        <div className='App' dir='rtl'>
             <Angrid
+                rtl
+                language='fa'
                 showRowNumber
                 columns={columns}
                 rows={createUsers()}
