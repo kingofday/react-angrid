@@ -121,9 +121,7 @@ const Main = ({
 
     return (
         <Wrapper
-            className={`angrid ${theme} ${className} ${
-                rows.length === 0 ? 'is-empty' : 'not-empty'
-            }`}
+            className={`angrid ${theme} ${className}`}
             minHeight={minHeight}
         >
             <div className='asax'>

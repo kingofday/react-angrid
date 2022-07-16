@@ -39,7 +39,7 @@ const createUser = () => {
     }
 }
 
-const createUsers = (numUsers = 10) => {
+const createUsers = (numUsers = 0) => {
     return Array.from({ length: numUsers }, createUser)
 }
 

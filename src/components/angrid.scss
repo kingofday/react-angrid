@@ -5,6 +5,7 @@
     box-shadow: 0 2px 4px 2px #eee;
     overflow-x: auto;
     width: 100%;
+
     .asax {
         table {
             border-collapse: collapse;
@@ -174,28 +175,12 @@
         }
     }
 }
-.is-empty {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    border: none;
-    .empty {
-        -webkit-box-pack: center;
-        -ms-flex-pack: center;
-        justify-content: center;
-        -webkit-box-align: center;
-        -ms-flex-align: center;
-        align-items: center;
-        width: 100%;
-        text-align: center;
-    }
+.isEmpty {
+    position: absolute;
+    top: calc(50% - 60px);
+    left: calc(50% - 60px);
 }
+
 @keyframes lds-ring {
     0% {
         transform: rotate(0deg);

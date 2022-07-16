@@ -47,8 +47,7 @@ export const Main = ({
         <div className={className}>
             {loading && <Loading />}
             <table style={{ width: '100%' }}>
-                {empty && !loading && <IsEmpty message={emptyMessage} />}
-                {!empty && !loading && (
+                {!loading && (
                     <>
                         <thead>
                             <tr>
@@ -86,18 +85,25 @@ export const Main = ({
                                 ))}
                             </tr>
                         </thead>
-                        <tbody className='tbody'>
-                            {rows?.map((row) => (
-                                <tr key={uuidv4()}>
-                                    {showRowNumber && (
-                                        <td>{rows.indexOf(row) + 1}</td>
-                                    )}
-                                    {columns?.map((c) => (
-                                        <td key={uuidv4()}>{row[c.field]}</td>
-                                    ))}
-                                </tr>
-                            ))}
-                        </tbody>
+
+                        {empty ? (
+                            <IsEmpty message={emptyMessage} />
+                        ) : (
+                            <tbody className='tbody'>
+                                {rows?.map((row) => (
+                                    <tr key={uuidv4()}>
+                                        {showRowNumber && (
+                                            <td>{rows.indexOf(row) + 1}</td>
+                                        )}
+                                        {columns?.map((c) => (
+                                            <td key={uuidv4()}>
+                                                {row[c.field]}
+                                            </td>
+                                        ))}
+                                    </tr>
+                                ))}
+                            </tbody>
+                        )}
                     </>
                 )}
             </table>
