@@ -126,7 +126,7 @@ export const Main = ({
             {showPageSelect && (
                 <div className='selectPage'>
                     <select
-                        defaultValue={page}
+                        value={page}
                         onChange={(event): void =>
                             pageChanging(
                                 PaginateType.SELECT,
@@ -135,11 +135,7 @@ export const Main = ({
                         }
                     >
                         {pages.map((item) => (
-                            <option
-                                value={item}
-                                key={uuidv4()}
-                                selected={page === item}
-                            >
+                            <option value={item} key={uuidv4()}>
                                 {item}
                             </option>
                         ))}

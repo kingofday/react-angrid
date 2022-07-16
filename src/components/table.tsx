@@ -85,12 +85,10 @@ export const Main = ({
                                 ))}
                             </tr>
                         </thead>
-
-                        {empty ? (
-                            <IsEmpty message={emptyMessage} />
-                        ) : (
-                            <tbody className='tbody'>
-                                {rows?.map((row) => (
+                        {/* <IsEmpty message={emptyMessage} /> */}
+                        <tbody className='tbody'>
+                            {!empty &&
+                                rows?.map((row) => (
                                     <tr key={uuidv4()}>
                                         {showRowNumber && (
                                             <td>{rows.indexOf(row) + 1}</td>
@@ -102,8 +100,14 @@ export const Main = ({
                                         ))}
                                     </tr>
                                 ))}
-                            </tbody>
-                        )}
+                            <tr>
+                                <td>
+                                    {empty && (
+                                        <IsEmpty message={emptyMessage} />
+                                    )}
+                                </td>
+                            </tr>
+                        </tbody>
                     </>
                 )}
             </table>
