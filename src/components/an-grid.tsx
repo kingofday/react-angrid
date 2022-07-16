@@ -26,7 +26,16 @@ export interface PropsTypes {
     totalCount: number | undefined
     pageSize?: number
     loading?: boolean | 0
-    defaultPageSize?: number
+    showTotalRecord?: boolean
+    titleTotalRecord?: string
+    showCurrentPage?: boolean
+    titleCurrentPage?: string
+    showNumberOfPage?: boolean
+    titleNumberOfPage?: string
+    showPageRange?: boolean
+    showPageSelect?: boolean
+    showPageNumber?: boolean
+    showPageArrow?: boolean
     onPageChange: (current: number, size: number) => void
 }
 
@@ -50,8 +59,17 @@ const Main = ({
     totalCount = 1,
     loading = 0,
     pageSize = 20,
-    defaultPageSize = 20,
     onPageChange,
+    showTotalRecord = false,
+    titleTotalRecord = 'Total Record',
+    showCurrentPage = false,
+    titleCurrentPage = 'Current Page',
+    showNumberOfPage = false,
+    titleNumberOfPage = 'Number of Page',
+    showPageRange = true,
+    showPageSelect = true,
+    showPageNumber = true,
+    showPageArrow = true,
 }: PropsTypes): JSX.Element => {
     const [isLoading, setIsLoading] = useState(true)
     const [isEmpty, setIsEmpty] = useState(false)
@@ -79,10 +97,10 @@ const Main = ({
     }, [loading, rows])
 
     useEffect(() => {
-        if (defaultPageSize && range.includes(defaultPageSize)) {
-            setIsSize(defaultPageSize)
+        if (pageSize && range.includes(pageSize)) {
+            setIsSize(pageSize)
         }
-    }, [defaultPageSize])
+    }, [pageSize])
 
     return (
         <Wrapper
@@ -104,10 +122,19 @@ const Main = ({
             {!isEmpty && totalCount > pageSize && (
                 <Paginate
                     totalCount={totalCount}
-                    pageSize={pageSize}
+                    pageSize={isSize}
                     onPageChange={onPageChange}
-                    defaultPageSize={isSize}
                     range={range}
+                    showTotalRecord={showTotalRecord}
+                    titleTotalRecord={titleTotalRecord}
+                    showCurrentPage={showCurrentPage}
+                    titleCurrentPage={titleCurrentPage}
+                    showNumberOfPage={showNumberOfPage}
+                    titleNumberOfPage={titleNumberOfPage}
+                    showPageRange={showPageRange}
+                    showPageSelect={showPageSelect}
+                    showPageNumber={showPageNumber}
+                    showPageArrow={showPageArrow}
                 />
             )}
         </Wrapper>

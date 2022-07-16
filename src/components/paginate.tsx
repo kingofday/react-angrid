@@ -15,15 +15,24 @@ type Props = Partial<PropsTypes> & {
 }
 
 export const Main = ({
-    totalCount,
-    pageSize,
+    totalCount = 1,
+    pageSize = 20,
     onPageChange,
-    defaultPageSize = 20,
     range,
+    showTotalRecord,
+    titleTotalRecord,
+    showCurrentPage,
+    titleCurrentPage,
+    showNumberOfPage,
+    titleNumberOfPage,
+    showPageRange,
+    showPageSelect,
+    showPageNumber,
+    showPageArrow,
 }: Props): JSX.Element => {
     const [page, setPage] = useState(1)
     const [slices, setSlices] = useState<number[]>([])
-    const [rangePageSize, setRangePageSize] = useState<number>(defaultPageSize)
+    const [rangePageSize, setRangePageSize] = useState<number>(pageSize)
     const { pages, totalPageCount } = usePagination(totalCount, pageSize)
 
     useEffect(() => {
@@ -44,7 +53,7 @@ export const Main = ({
             setSlices(pages)
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [defaultPageSize, onPageChange, page, rangePageSize, totalPageCount])
+    }, [pageSize, onPageChange, page, rangePageSize, totalPageCount])
 
     /**
      * @description: handle paginate selection
@@ -76,67 +85,102 @@ export const Main = ({
         <div className='paginate'>
             {/* button select page */}
             <div>
-                <button
-                    onClick={(): void => pageChanging(PaginateType.PREV, 1)}
-                    type='button'
-                    className={page === 1 ? 'disabled' : ''}
-                >
-                    <FiChevronLeft />
-                </button>
-                {slices.map((item) => (
+                {showPageArrow && (
                     <button
-                        key={uuidv4()}
-                        className={item === page ? 'active' : ''}
-                        onClick={(): void =>
-                            pageChanging(PaginateType.SELECT, item)
-                        }
+                        onClick={(): void => pageChanging(PaginateType.PREV, 1)}
                         type='button'
+                        className={page === 1 ? 'disabled' : ''}
                     >
-                        {item}
+                        <FiChevronLeft />
                     </button>
-                ))}
-                <button
-                    onClick={(): void => pageChanging(PaginateType.NEXT, 1)}
-                    type='button'
-                    className={page === totalPageCount ? 'disabled' : ''}
-                >
-                    <FiChevronRight />
-                </button>
+                )}
+
+                {showPageNumber && (
+                    <span>
+                        {slices.map((item) => (
+                            <button
+                                key={uuidv4()}
+                                className={item === page ? 'active' : ''}
+                                onClick={(): void =>
+                                    pageChanging(PaginateType.SELECT, item)
+                                }
+                                type='button'
+                            >
+                                {item}
+                            </button>
+                        ))}
+                    </span>
+                )}
+
+                {showPageArrow && (
+                    <button
+                        onClick={(): void => pageChanging(PaginateType.NEXT, 1)}
+                        type='button'
+                        className={page === totalPageCount ? 'disabled' : ''}
+                    >
+                        <FiChevronRight />
+                    </button>
+                )}
             </div>
-            {/* dropdown select page */}
-            <div className='selectPage'>
-                <select
-                    defaultValue={page}
-                    onChange={(event): void =>
-                        pageChanging(PaginateType.SELECT, +event.target.value)
-                    }
-                >
-                    {pages.map((item) => (
-                        <option
-                            value={item}
-                            key={uuidv4()}
-                            selected={page === item}
-                        >
-                            {item}
-                        </option>
-                    ))}
-                </select>
-            </div>
+            {/* select page */}
+            {showPageSelect && (
+                <div className='selectPage'>
+                    <select
+                        defaultValue={page}
+                        onChange={(event): void =>
+                            pageChanging(
+                                PaginateType.SELECT,
+                                +event.target.value
+                            )
+                        }
+                    >
+                        {pages.map((item) => (
+                            <option
+                                value={item}
+                                key={uuidv4()}
+                                selected={page === item}
+                            >
+                                {item}
+                            </option>
+                        ))}
+                    </select>
+                </div>
+            )}
             {/* page range */}
-            <div className='rangePage'>
-                <select
-                    value={rangePageSize}
-                    onChange={(event): void =>
-                        setRangePageSize(+event.target.value)
-                    }
-                >
-                    {range.map((item: number) => (
-                        <option value={item} key={uuidv4()}>
-                            {`${item} / ${totalPageCount}`}
-                        </option>
-                    ))}
-                </select>
-            </div>
+            {showPageRange && (
+                <div className='rangePage'>
+                    <select
+                        value={rangePageSize}
+                        onChange={(event): void =>
+                            setRangePageSize(+event.target.value)
+                        }
+                    >
+                        {range.map((item: number) => (
+                            <option value={item} key={uuidv4()}>
+                                {`${item} / ${totalCount}`}
+                            </option>
+                        ))}
+                    </select>
+                </div>
+            )}
+            {/* total record */}
+            {showTotalRecord && (
+                <div className='textPage'>
+                    {titleTotalRecord}: {totalCount}
+                </div>
+            )}
+            {/* current page */}
+            {showCurrentPage && (
+                <div className='textPage'>
+                    {titleCurrentPage}: {page}
+                </div>
+            )}
+            {/* number of page */}
+            {showNumberOfPage && (
+                <div className='textPage'>
+                    {titleNumberOfPage}: {totalPageCount}
+                </div>
+            )}
         </div>
     )
 }

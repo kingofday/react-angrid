@@ -19,14 +19,13 @@ var PaginateType;
     PaginateType[PaginateType["NEXT"] = 0] = "NEXT";
     PaginateType[PaginateType["PREV"] = 1] = "PREV";
     PaginateType[PaginateType["SELECT"] = 2] = "SELECT";
-    PaginateType[PaginateType["SIZE"] = 3] = "SIZE";
 })(PaginateType || (PaginateType = {}));
 export var Main = function (_a) {
-    var totalCount = _a.totalCount, pageSize = _a.pageSize, onPageChange = _a.onPageChange, _b = _a.defaultPageSize, defaultPageSize = _b === void 0 ? 20 : _b, range = _a.range;
-    var _c = useState(1), page = _c[0], setPage = _c[1];
-    var _d = useState([]), slices = _d[0], setSlices = _d[1];
-    var _e = useState(defaultPageSize), rangePageSize = _e[0], setRangePageSize = _e[1];
-    var _f = usePagination(totalCount, pageSize), pages = _f.pages, totalPageCount = _f.totalPageCount;
+    var _b = _a.totalCount, totalCount = _b === void 0 ? 1 : _b, _c = _a.pageSize, pageSize = _c === void 0 ? 20 : _c, onPageChange = _a.onPageChange, range = _a.range, showTotalRecord = _a.showTotalRecord, titleTotalRecord = _a.titleTotalRecord, showCurrentPage = _a.showCurrentPage, titleCurrentPage = _a.titleCurrentPage, showNumberOfPage = _a.showNumberOfPage, titleNumberOfPage = _a.titleNumberOfPage, showPageRange = _a.showPageRange, showPageSelect = _a.showPageSelect, showPageNumber = _a.showPageNumber, showPageArrow = _a.showPageArrow;
+    var _d = useState(1), page = _d[0], setPage = _d[1];
+    var _e = useState([]), slices = _e[0], setSlices = _e[1];
+    var _f = useState(pageSize), rangePageSize = _f[0], setRangePageSize = _f[1];
+    var _g = usePagination(totalCount, pageSize), pages = _g.pages, totalPageCount = _g.totalPageCount;
     useEffect(function () {
         if (typeof onPageChange !== 'undefined') {
             onPageChange(page, rangePageSize);
@@ -48,7 +47,7 @@ export var Main = function (_a) {
             setSlices(pages);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [defaultPageSize, onPageChange, page, rangePageSize, totalPageCount]);
+    }, [pageSize, onPageChange, page, rangePageSize, totalPageCount]);
     /**
      * @description: handle paginate selection
      * @param {number} paginate type
@@ -72,12 +71,12 @@ export var Main = function (_a) {
                 break;
         }
     }, [page, totalPageCount]);
-    return (_jsxs("div", __assign({ className: 'paginate' }, { children: [_jsxs("div", { children: [_jsx("button", __assign({ onClick: function () { return pageChanging(PaginateType.PREV, 1); }, type: 'button', className: page === 1 ? 'disabled' : '' }, { children: _jsx(FiChevronLeft, {}) })), slices.map(function (item) { return (_jsx("button", __assign({ className: item === page ? 'active' : '', onClick: function () {
-                            return pageChanging(PaginateType.SELECT, item);
-                        }, type: 'button' }, { children: item }), uuidv4())); }), _jsx("button", __assign({ onClick: function () { return pageChanging(PaginateType.NEXT, 1); }, type: 'button', className: page === totalPageCount ? 'disabled' : '' }, { children: _jsx(FiChevronRight, {}) }))] }), _jsx("div", __assign({ className: 'selectPage' }, { children: _jsx("select", __assign({ defaultValue: page, onChange: function (event) {
+    return (_jsxs("div", __assign({ className: 'paginate' }, { children: [_jsxs("div", { children: [showPageArrow && (_jsx("button", __assign({ onClick: function () { return pageChanging(PaginateType.PREV, 1); }, type: 'button', className: page === 1 ? 'disabled' : '' }, { children: _jsx(FiChevronLeft, {}) }))), showPageNumber && (_jsx("span", { children: slices.map(function (item) { return (_jsx("button", __assign({ className: item === page ? 'active' : '', onClick: function () {
+                                return pageChanging(PaginateType.SELECT, item);
+                            }, type: 'button' }, { children: item }), uuidv4())); }) })), showPageArrow && (_jsx("button", __assign({ onClick: function () { return pageChanging(PaginateType.NEXT, 1); }, type: 'button', className: page === totalPageCount ? 'disabled' : '' }, { children: _jsx(FiChevronRight, {}) })))] }), showPageSelect && (_jsx("div", __assign({ className: 'selectPage' }, { children: _jsx("select", __assign({ defaultValue: page, onChange: function (event) {
                         return pageChanging(PaginateType.SELECT, +event.target.value);
-                    } }, { children: pages.map(function (item) { return (_jsx("option", __assign({ value: item, selected: page === item }, { children: item }), uuidv4())); }) })) })), _jsx("div", __assign({ className: 'rangePage' }, { children: _jsx("select", __assign({ value: rangePageSize, onChange: function (event) {
+                    } }, { children: pages.map(function (item) { return (_jsx("option", __assign({ value: item, selected: page === item }, { children: item }), uuidv4())); }) })) }))), showPageRange && (_jsx("div", __assign({ className: 'rangePage' }, { children: _jsx("select", __assign({ value: rangePageSize, onChange: function (event) {
                         return setRangePageSize(+event.target.value);
-                    } }, { children: range.map(function (item) { return (_jsx("option", __assign({ value: item }, { children: "".concat(item, " / ").concat(totalPageCount) }), uuidv4())); }) })) }))] })));
+                    } }, { children: range.map(function (item) { return (_jsx("option", __assign({ value: item }, { children: "".concat(item, " / ").concat(totalCount) }), uuidv4())); }) })) }))), showTotalRecord && (_jsxs("div", __assign({ className: 'textPage' }, { children: [titleTotalRecord, ": ", totalCount] }))), showCurrentPage && (_jsxs("div", __assign({ className: 'textPage' }, { children: [titleCurrentPage, ": ", page] }))), showNumberOfPage && (_jsxs("div", __assign({ className: 'textPage' }, { children: [titleNumberOfPage, ": ", totalPageCount] })))] })));
 };
 export var Paginate = memo(Main);

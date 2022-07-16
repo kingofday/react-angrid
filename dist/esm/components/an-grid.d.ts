@@ -22,7 +22,16 @@ export interface PropsTypes {
     totalCount: number | undefined;
     pageSize?: number;
     loading?: boolean | 0;
-    defaultPageSize?: number;
+    showTotalRecord?: boolean;
+    titleTotalRecord?: string;
+    showCurrentPage?: boolean;
+    titleCurrentPage?: string;
+    showNumberOfPage?: boolean;
+    titleNumberOfPage?: string;
+    showPageRange?: boolean;
+    showPageSelect?: boolean;
+    showPageNumber?: boolean;
+    showPageArrow?: boolean;
     onPageChange: (current: number, size: number) => void;
 }
-export declare const Angrid: import("react").MemoExoticComponent<({ className, theme, minHeight, showRowNumber, columnNumberTitle, columns, emptyMessage, rows, totalCount, loading, pageSize, defaultPageSize, onPageChange, }: PropsTypes) => JSX.Element>;
+export declare const Angrid: import("react").MemoExoticComponent<({ className, theme, minHeight, showRowNumber, columnNumberTitle, columns, emptyMessage, rows, totalCount, loading, pageSize, onPageChange, showTotalRecord, titleTotalRecord, showCurrentPage, titleCurrentPage, showNumberOfPage, titleNumberOfPage, showPageRange, showPageSelect, showPageNumber, showPageArrow, }: PropsTypes) => JSX.Element>;
