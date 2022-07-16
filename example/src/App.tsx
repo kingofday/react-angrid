@@ -7,6 +7,7 @@ const columns = [
         headerName: 'User Id',
         description: 'user id that is unique',
         width: 50,
+        sortable: true,
     },
     {
         field: 'fullName',
@@ -20,6 +21,7 @@ const columns = [
         headerName: 'Age',
         description: 'age of user',
         width: 50,
+        sortable: true,
     },
     {
         field: 'delete',

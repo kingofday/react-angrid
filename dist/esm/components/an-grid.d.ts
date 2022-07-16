@@ -1,4 +1,3 @@
-import { ReactNode } from 'react';
 import './angrid.css';
 export interface RowsType<T> {
     [key: string]: T;
@@ -18,7 +17,7 @@ export interface PropsTypes {
     columnNumberTitle?: string;
     showRowNumber: boolean;
     columns: Columns[];
-    rows: RowsType<string | number | ReactNode>[];
+    rows: RowsType<string | number>[];
     totalCount: number | undefined;
     pageSize?: number;
     loading?: boolean | 0;

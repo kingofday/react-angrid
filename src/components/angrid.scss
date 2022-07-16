@@ -59,6 +59,119 @@
                 border: thin solid #ccc;
             }
         }
+        .paginate {
+            padding: 10px;
+            border-top: thin solid #ddd;
+            display: flex;
+            flex-direction: row;
+            background-color: #f7f7f7;
+            button {
+                cursor: pointer;
+                width: 42px;
+                height: 42px;
+                color: #2e324a;
+                background-color: #f7f7f7;
+                border-radius: 50%;
+                margin-top: 5px;
+                border: none;
+                &:hover {
+                    background-color: #eee;
+                }
+            }
+            .active {
+                background-color: #394c56;
+                color: #f7f7f7;
+                &:hover {
+                    background-color: #394c56;
+                }
+            }
+            .disabled {
+                color: #ddd;
+                &:hover {
+                    background-color: #f7f7f7;
+                    cursor: auto;
+                }
+            }
+            .selectPage {
+                min-width: 50px;
+                margin-left: 10px;
+                margin-right: 10px;
+                select {
+                    padding: 7px 5px 7px 10px;
+                    width: 100%;
+                    border: 1px solid #e8eaed;
+                    border-radius: 5px;
+                    cursor: pointer;
+                    font-family: inherit;
+                    font-size: 14px;
+                    transition: all 150ms ease;
+                    margin-top: 8px;
+                    &:required:invalid {
+                        color: #5a667f;
+                    }
+
+                    option {
+                        color: #223254;
+                    }
+                    &[value=''][disabled] {
+                        display: none;
+                    }
+
+                    &:focus {
+                        outline: none;
+                        border-color: #0077ff;
+                        box-shadow: 0 0 0 2px rgba(#0077ff, 0.2);
+                    }
+
+                    &:hover {
+                        stroke: #0077ff;
+                    }
+                }
+            }
+            .rangePage {
+                min-width: 100px;
+                margin-left: 10px;
+                margin-right: 10px;
+                select {
+                    padding: 7px 5px 7px 10px;
+                    width: 100%;
+                    border: 1px solid #e8eaed;
+                    border-radius: 5px;
+                    cursor: pointer;
+                    font-family: inherit;
+                    font-size: 14px;
+                    transition: all 150ms ease;
+                    margin-top: 8px;
+                    &:required:invalid {
+                        color: #5a667f;
+                    }
+
+                    option {
+                        color: #223254;
+                    }
+                    &[value=''][disabled] {
+                        display: none;
+                    }
+
+                    &:focus {
+                        outline: none;
+                        border-color: #0077ff;
+                        box-shadow: 0 0 0 2px rgba(#0077ff, 0.2);
+                    }
+
+                    &:hover {
+                        stroke: #0077ff;
+                    }
+                }
+            }
+            .textPage {
+                margin-left: 5px;
+                margin-right: 5px;
+                font-size: 14px;
+                color: #5a667f;
+                margin-top: 16px;
+            }
+        }
     }
 }
 .is-empty {
@@ -120,118 +233,5 @@
         &:nth-child(3) {
             animation-delay: -0.15s;
         }
-    }
-}
-.paginate {
-    padding: 10px;
-    border-top: thin solid #ddd;
-    display: flex;
-    flex-direction: row;
-    background-color: #f7f7f7;
-    button {
-        cursor: pointer;
-        width: 42px;
-        height: 42px;
-        color: #2e324a;
-        background-color: #f7f7f7;
-        border-radius: 50%;
-        margin-top: 5px;
-        border: none;
-        &:hover {
-            background-color: #eee;
-        }
-    }
-    .active {
-        background-color: #1976d2;
-        color: #f7f7f7;
-        &:hover {
-            background-color: #1976d2;
-        }
-    }
-    .disabled {
-        color: #ddd;
-        &:hover {
-            background-color: #f7f7f7;
-            cursor: auto;
-        }
-    }
-    .selectPage {
-        min-width: 50px;
-        margin-left: 10px;
-        margin-right: 10px;
-        select {
-            padding: 7px 5px 7px 10px;
-            width: 100%;
-            border: 1px solid #e8eaed;
-            border-radius: 5px;
-            cursor: pointer;
-            font-family: inherit;
-            font-size: 14px;
-            transition: all 150ms ease;
-            margin-top: 8px;
-            &:required:invalid {
-                color: #5a667f;
-            }
-
-            option {
-                color: #223254;
-            }
-            &[value=''][disabled] {
-                display: none;
-            }
-
-            &:focus {
-                outline: none;
-                border-color: #0077ff;
-                box-shadow: 0 0 0 2px rgba(#0077ff, 0.2);
-            }
-
-            &:hover {
-                stroke: #0077ff;
-            }
-        }
-    }
-    .rangePage {
-        min-width: 100px;
-        margin-left: 10px;
-        margin-right: 10px;
-        select {
-            padding: 7px 5px 7px 10px;
-            width: 100%;
-            border: 1px solid #e8eaed;
-            border-radius: 5px;
-            cursor: pointer;
-            font-family: inherit;
-            font-size: 14px;
-            transition: all 150ms ease;
-            margin-top: 8px;
-            &:required:invalid {
-                color: #5a667f;
-            }
-
-            option {
-                color: #223254;
-            }
-            &[value=''][disabled] {
-                display: none;
-            }
-
-            &:focus {
-                outline: none;
-                border-color: #0077ff;
-                box-shadow: 0 0 0 2px rgba(#0077ff, 0.2);
-            }
-
-            &:hover {
-                stroke: #0077ff;
-            }
-        }
-    }
-    .textPage {
-        margin-left: 5px;
-        margin-right: 5px;
-        font-size: 14px;
-        color: #5a667f;
-        margin-top: 16px;
     }
 }

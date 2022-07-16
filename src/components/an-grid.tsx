@@ -1,4 +1,4 @@
-import { memo, ReactNode, useEffect, useState } from 'react'
+import { memo, useCallback, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import './angrid.css'
 import { Paginate } from './paginate'
@@ -22,7 +22,7 @@ export interface PropsTypes {
     columnNumberTitle?: string
     showRowNumber: boolean
     columns: Columns[]
-    rows: RowsType<string | number | ReactNode>[]
+    rows: RowsType<string | number>[]
     totalCount: number | undefined
     pageSize?: number
     loading?: boolean | 0
@@ -54,10 +54,10 @@ const Main = ({
     minHeight = 300,
     showRowNumber,
     columnNumberTitle = '#',
-    columns = [],
+    columns,
     emptyMessage = 'No Data',
-    rows = [],
-    totalCount = 1,
+    rows,
+    totalCount,
     loading = 0,
     pageSize = 20,
     onPageChange,
@@ -77,6 +77,21 @@ const Main = ({
     const [isEmpty, setIsEmpty] = useState(false)
     const [isRow, setIsRow] = useState<PropsTypes['rows']>([])
     const [isSize, setIsSize] = useState(20)
+
+    const sortRows = useCallback(
+        (value: string, desc: boolean): void => {
+            const sort = rows.sort((a, b) => {
+                if (!desc) {
+                    return b[value] > a[value] ? 1 : -1
+                }
+
+                return a[value] > b[value] ? 1 : -1
+            })
+
+            setIsRow(sort)
+        },
+        [rows]
+    )
 
     useEffect(() => {
         if (typeof loading !== 'number') {
@@ -121,9 +136,12 @@ const Main = ({
                     rows={isRow}
                     empty={isEmpty}
                     loading={isLoading}
+                    sortable={(value: string, sort: boolean): void =>
+                        sortRows(value, sort)
+                    }
                 />
 
-                {!isEmpty && totalCount > pageSize && (
+                {!isEmpty && totalCount && totalCount > pageSize && (
                     <Paginate
                         totalCount={totalCount}
                         pageSize={isSize}

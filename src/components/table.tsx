@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unsafe-return */
-import { memo } from 'react'
-import { BiSortDown } from 'react-icons/bi'
+import { memo, useCallback, useState } from 'react'
+import { BiSortDown, BiSortUp } from 'react-icons/bi'
 import styled from 'styled-components'
 import { v4 as uuidv4 } from 'uuid'
 import type { Columns, PropsTypes } from './an-grid'
@@ -10,6 +10,7 @@ import { Loading } from './loading'
 type Props = {
     empty: boolean
     loading: boolean
+    sortable: (value: string, sort: boolean) => void
 }
 
 const Th = styled.th<Pick<Columns, 'sortable' | 'width'>>`
@@ -28,58 +29,80 @@ export const Main = ({
     emptyMessage = 'no data',
     loading,
     className,
-}: Partial<PropsTypes> & Props): JSX.Element => (
-    <div className={className}>
-        {loading && <Loading />}
-        <table style={{ width: '100%' }}>
-            {empty && !loading && <IsEmpty message={emptyMessage} />}
-            {!empty && !loading && (
-                <>
-                    <thead>
-                        <tr>
-                            {showRowNumber && (
-                                <th style={{ width: 25 }}>
-                                    {columnNumberTitle}
-                                </th>
-                            )}
-                            {columns?.map((column) => (
-                                <Th
-                                    className='sort'
-                                    key={uuidv4()}
-                                    title={column.description}
-                                    sortable={column.sortable}
-                                    width={column.width}
-                                >
-                                    {column.headerName}
-                                    <button
-                                        type='button'
-                                        className='sort-icon'
-                                        onClick={(): void =>
-                                            console.log(column.field)
-                                        }
-                                    >
-                                        <BiSortDown />
-                                    </button>
-                                </Th>
-                            ))}
-                        </tr>
-                    </thead>
-                    <tbody className='tbody'>
-                        {rows?.map((row) => (
-                            <tr key={uuidv4()}>
+    sortable,
+}: Partial<PropsTypes> & Props): JSX.Element => {
+    const [isSort, setIsSort] = useState<boolean>(false)
+    const [isSortField, setIsSortField] = useState<string>('')
+
+    const handleSort = useCallback(
+        (value: string): void => {
+            setIsSort(!isSort)
+            setIsSortField(value)
+            sortable(value, isSort)
+        },
+        [isSort, sortable]
+    )
+
+    return (
+        <div className={className}>
+            {loading && <Loading />}
+            <table style={{ width: '100%' }}>
+                {empty && !loading && <IsEmpty message={emptyMessage} />}
+                {!empty && !loading && (
+                    <>
+                        <thead>
+                            <tr>
                                 {showRowNumber && (
-                                    <td>{rows.indexOf(row) + 1}</td>
+                                    <th style={{ width: 25 }}>
+                                        {columnNumberTitle}
+                                    </th>
                                 )}
-                                {columns?.map((c) => (
-                                    <td key={uuidv4()}>{row[c.field]}</td>
+                                {columns?.map((column) => (
+                                    <Th
+                                        className='sort'
+                                        key={uuidv4()}
+                                        title={column.description}
+                                        sortable={column.sortable}
+                                        width={column.width}
+                                    >
+                                        {column.headerName}
+                                        {column.sortable && (
+                                            <button
+                                                type='button'
+                                                className='sort-icon'
+                                                onClick={(): void =>
+                                                    handleSort(column.field)
+                                                }
+                                            >
+                                                {isSort &&
+                                                isSortField === column.field ? (
+                                                    <BiSortDown />
+                                                ) : (
+                                                    <BiSortUp />
+                                                )}
+                                            </button>
+                                        )}
+                                    </Th>
                                 ))}
                             </tr>
-                        ))}
-                    </tbody>
-                </>
-            )}
-        </table>
-    </div>
-)
+                        </thead>
+                        <tbody className='tbody'>
+                            {rows?.map((row) => (
+                                <tr key={uuidv4()}>
+                                    {showRowNumber && (
+                                        <td>{rows.indexOf(row) + 1}</td>
+                                    )}
+                                    {columns?.map((c) => (
+                                        <td key={uuidv4()}>{row[c.field]}</td>
+                                    ))}
+                                </tr>
+                            ))}
+                        </tbody>
+                    </>
+                )}
+            </table>
+        </div>
+    )
+}
 
 export const Table = memo(Main)
