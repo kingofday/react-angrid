@@ -48,7 +48,7 @@ function App() {
                 showRowNumber
                 columns={columns}
                 rows={createUsers()}
-                totalCount={5}
+                totalCount={100}
                 onPageChange={(page, size) => console.log(page, size)}
                 pageSize={10}
                 showCurrentPage

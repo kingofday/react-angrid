@@ -157,7 +157,7 @@ export const Main = ({
                     >
                         {range.map((item: number) => (
                             <option value={item} key={uuidv4()}>
-                                {`${item} / ${totalCount}`}
+                                {`${totalCount} / ${item}`}
                             </option>
                         ))}
                     </select>

@@ -16,6 +16,7 @@ var __assign = (this && this.__assign) || function () {
 import { jsx as _jsx, jsxs as _jsxs, Fragment as _Fragment } from "react/jsx-runtime";
 /* eslint-disable @typescript-eslint/no-unsafe-return */
 import { memo } from 'react';
+import { BiSortDown } from 'react-icons/bi';
 import styled from 'styled-components';
 import { v4 as uuidv4 } from 'uuid';
 import { IsEmpty } from './is-empty';
@@ -28,8 +29,10 @@ var Th = styled.th(templateObject_1 || (templateObject_1 = __makeTemplateObject(
     return typeof width === 'number' ? "".concat(width, "px") : '85px';
 });
 export var Main = function (_a) {
-    var showRowNumber = _a.showRowNumber, columnNumberTitle = _a.columnNumberTitle, columns = _a.columns, rows = _a.rows, empty = _a.empty, _b = _a.emptyMessage, emptyMessage = _b === void 0 ? 'no data' : _b, loading = _a.loading;
-    return (_jsxs(_Fragment, { children: [loading && _jsx(Loading, {}), _jsxs("table", __assign({ style: { width: '100%' } }, { children: [empty && !loading && _jsx(IsEmpty, { message: emptyMessage }), !empty && !loading && (_jsxs(_Fragment, { children: [_jsx("thead", __assign({ className: 'thead' }, { children: _jsxs("tr", { children: [showRowNumber && (_jsx("th", __assign({ style: { width: 25 } }, { children: columnNumberTitle }))), columns === null || columns === void 0 ? void 0 : columns.map(function (column) { return (_jsx(Th, __assign({ title: column.description, sortable: column.sortable, width: column.width }, { children: column.headerName }), uuidv4())); })] }) })), _jsx("tbody", __assign({ className: 'tbody' }, { children: rows === null || rows === void 0 ? void 0 : rows.map(function (row) { return (_jsxs("tr", { children: [showRowNumber && (_jsx("td", { children: rows.indexOf(row) + 1 })), columns === null || columns === void 0 ? void 0 : columns.map(function (c) { return (_jsx("td", { children: row[c.field] }, uuidv4())); })] }, uuidv4())); }) }))] }))] }))] }));
+    var showRowNumber = _a.showRowNumber, columnNumberTitle = _a.columnNumberTitle, columns = _a.columns, rows = _a.rows, empty = _a.empty, _b = _a.emptyMessage, emptyMessage = _b === void 0 ? 'no data' : _b, loading = _a.loading, className = _a.className;
+    return (_jsxs("div", __assign({ className: className }, { children: [loading && _jsx(Loading, {}), _jsxs("table", __assign({ style: { width: '100%' } }, { children: [empty && !loading && _jsx(IsEmpty, { message: emptyMessage }), !empty && !loading && (_jsxs(_Fragment, { children: [_jsx("thead", { children: _jsxs("tr", { children: [showRowNumber && (_jsx("th", __assign({ style: { width: 25 } }, { children: columnNumberTitle }))), columns === null || columns === void 0 ? void 0 : columns.map(function (column) { return (_jsxs(Th, __assign({ className: 'sort', title: column.description, sortable: column.sortable, width: column.width }, { children: [column.headerName, _jsx("button", __assign({ type: 'button', className: 'sort-icon', onClick: function () {
+                                                        return console.log(column.field);
+                                                    } }, { children: _jsx(BiSortDown, {}) }))] }), uuidv4())); })] }) }), _jsx("tbody", __assign({ className: 'tbody' }, { children: rows === null || rows === void 0 ? void 0 : rows.map(function (row) { return (_jsxs("tr", { children: [showRowNumber && (_jsx("td", { children: rows.indexOf(row) + 1 })), columns === null || columns === void 0 ? void 0 : columns.map(function (c) { return (_jsx("td", { children: row[c.field] }, uuidv4())); })] }, uuidv4())); }) }))] }))] }))] })));
 };
 export var Table = memo(Main);
 var templateObject_1;

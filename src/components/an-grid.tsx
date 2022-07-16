@@ -36,6 +36,7 @@ export interface PropsTypes {
     showPageSelect?: boolean
     showPageNumber?: boolean
     showPageArrow?: boolean
+    bordered?: boolean
     onPageChange: (current: number, size: number) => void
 }
 
@@ -70,6 +71,7 @@ const Main = ({
     showPageSelect = true,
     showPageNumber = true,
     showPageArrow = true,
+    bordered = false,
 }: PropsTypes): JSX.Element => {
     const [isLoading, setIsLoading] = useState(true)
     const [isEmpty, setIsEmpty] = useState(false)
@@ -109,34 +111,37 @@ const Main = ({
             }`}
             minHeight={minHeight}
         >
-            <Table
-                showRowNumber={showRowNumber}
-                columnNumberTitle={columnNumberTitle}
-                columns={columns}
-                emptyMessage={emptyMessage}
-                rows={isRow}
-                empty={isEmpty}
-                loading={isLoading}
-            />
-
-            {!isEmpty && totalCount > pageSize && (
-                <Paginate
-                    totalCount={totalCount}
-                    pageSize={isSize}
-                    onPageChange={onPageChange}
-                    range={range}
-                    showTotalRecord={showTotalRecord}
-                    titleTotalRecord={titleTotalRecord}
-                    showCurrentPage={showCurrentPage}
-                    titleCurrentPage={titleCurrentPage}
-                    showNumberOfPage={showNumberOfPage}
-                    titleNumberOfPage={titleNumberOfPage}
-                    showPageRange={showPageRange}
-                    showPageSelect={showPageSelect}
-                    showPageNumber={showPageNumber}
-                    showPageArrow={showPageArrow}
+            <div className='asax'>
+                <Table
+                    className={bordered ? 'bordered' : ''}
+                    showRowNumber={showRowNumber}
+                    columnNumberTitle={columnNumberTitle}
+                    columns={columns}
+                    emptyMessage={emptyMessage}
+                    rows={isRow}
+                    empty={isEmpty}
+                    loading={isLoading}
                 />
-            )}
+
+                {!isEmpty && totalCount > pageSize && (
+                    <Paginate
+                        totalCount={totalCount}
+                        pageSize={isSize}
+                        onPageChange={onPageChange}
+                        range={range}
+                        showTotalRecord={showTotalRecord}
+                        titleTotalRecord={titleTotalRecord}
+                        showCurrentPage={showCurrentPage}
+                        titleCurrentPage={titleCurrentPage}
+                        showNumberOfPage={showNumberOfPage}
+                        titleNumberOfPage={titleNumberOfPage}
+                        showPageRange={showPageRange}
+                        showPageSelect={showPageSelect}
+                        showPageNumber={showPageNumber}
+                        showPageArrow={showPageArrow}
+                    />
+                )}
+            </div>
         </Wrapper>
     )
 }

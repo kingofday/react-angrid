@@ -3,6 +3,6 @@ declare type Props = {
     empty: boolean;
     loading: boolean;
 };
-export declare const Main: ({ showRowNumber, columnNumberTitle, columns, rows, empty, emptyMessage, loading, }: Partial<PropsTypes> & Props) => JSX.Element;
-export declare const Table: import("react").MemoExoticComponent<({ showRowNumber, columnNumberTitle, columns, rows, empty, emptyMessage, loading, }: Partial<PropsTypes> & Props) => JSX.Element>;
+export declare const Main: ({ showRowNumber, columnNumberTitle, columns, rows, empty, emptyMessage, loading, className, }: Partial<PropsTypes> & Props) => JSX.Element;
+export declare const Table: import("react").MemoExoticComponent<({ showRowNumber, columnNumberTitle, columns, rows, empty, emptyMessage, loading, className, }: Partial<PropsTypes> & Props) => JSX.Element>;
 export {};

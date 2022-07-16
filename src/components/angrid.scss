@@ -5,79 +5,58 @@
     box-shadow: 0 2px 4px 2px #eee;
     overflow-x: auto;
     width: 100%;
-    table {
-        border-collapse: collapse;
-        border-spacing: 0;
-        min-width: 100%;
-        thead {
-            th {
-                padding: 15px 5px;
-                text-align: center !important;
-                .sort-icon {
-                    margin-left: 5px;
-                    vertical-align: middle;
+    .asax {
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+            min-width: 100%;
+            thead {
+                tr {
+                    background-color: #546e7a;
+                    color: #e3e3e3;
+                    th {
+                        text-align: start;
+                        padding: 15px 10px;
+                        position: relative;
+                        border-left: thin solid #5c7988;
+                        button {
+                            margin: 0 5px;
+                            position: absolute;
+                            top: calc(50% - 15px);
+                            cursor: pointer;
+                            width: 30px px;
+                            height: 30px;
+                            color: #e3e3e3;
+                            background-color: #546e7a;
+                            border-radius: 50%;
+                            border: none;
+                            font-size: large;
+                            right: 0;
+                            &:hover {
+                                background-color: #34454d;
+                            }
+                        }
+                    }
+                }
+            }
+            tbody {
+                tr {
+                    &:nth-child(even) {
+                        background-color: #f6faff;
+                    }
+                    &:hover {
+                        background-color: #eee;
+                    }
+                    td {
+                        text-align: start;
+                        padding: 8px;
+                    }
                 }
             }
         }
-        tbody {
-            tr {
-                &:nth-child(even) {
-                    background-color: #f6faff;
-                }
-                &:hover {
-                    background-color: #eee;
-                }
-                td {
-                    text-align: center !important;
-                    padding: 8px;
-                }
-            }
-        }
-    }
-}
-.angrid.dark {
-    table {
-        thead {
-            background-color: #546e7a;
-            color: #fff;
-        }
-    }
-    .angrid-pagination {
-        height: 45px;
-        background-color: #fff;
-        color: #2e324a;
-        padding: 0 15px;
-        span {
-            padding: 0 10px;
-        }
-        strong {
-            padding: 0 10px;
-        }
-        button {
-            color: #2e324a;
-            display: -webkit-box;
-            display: -ms-flexbox;
-            display: flex;
-            -webkit-box-pack: center;
-            -ms-flex-pack: center;
-            justify-content: center;
-            -webkit-box-align: center;
-            -ms-flex-align: center;
-            align-items: center;
-            font-size: 20px;
-            font-weight: 800;
-            padding: 0;
-            width: 30px;
-            height: 27px;
-            border-radius: 4px;
-            border: solid 1px #ccc;
-            padding-bottom: 4px;
-            &:hover {
-                background-color: #eee;
-                cursor: pointer;
-            }
-            &:focus {
-                outline: none;
+        .bordered {
+            td {
+                border: thin solid #ccc;
             }
         }
     }
@@ -144,15 +123,17 @@
     }
 }
 .paginate {
-    margin: 10px;
+    padding: 10px;
+    border-top: thin solid #ddd;
     display: flex;
     flex-direction: row;
+    background-color: #f7f7f7;
     button {
         cursor: pointer;
         width: 42px;
         height: 42px;
         color: #2e324a;
-        background-color: #fff;
+        background-color: #f7f7f7;
         border-radius: 50%;
         margin-top: 5px;
         border: none;
@@ -162,7 +143,7 @@
     }
     .active {
         background-color: #1976d2;
-        color: #fff;
+        color: #f7f7f7;
         &:hover {
             background-color: #1976d2;
         }
@@ -170,7 +151,7 @@
     .disabled {
         color: #ddd;
         &:hover {
-            background-color: #fff;
+            background-color: #f7f7f7;
             cursor: auto;
         }
     }

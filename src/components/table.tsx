@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unsafe-return */
 import { memo } from 'react'
+import { BiSortDown } from 'react-icons/bi'
 import styled from 'styled-components'
 import { v4 as uuidv4 } from 'uuid'
 import type { Columns, PropsTypes } from './an-grid'
@@ -26,14 +27,15 @@ export const Main = ({
     empty,
     emptyMessage = 'no data',
     loading,
+    className,
 }: Partial<PropsTypes> & Props): JSX.Element => (
-    <>
+    <div className={className}>
         {loading && <Loading />}
         <table style={{ width: '100%' }}>
             {empty && !loading && <IsEmpty message={emptyMessage} />}
             {!empty && !loading && (
                 <>
-                    <thead className='thead'>
+                    <thead>
                         <tr>
                             {showRowNumber && (
                                 <th style={{ width: 25 }}>
@@ -42,12 +44,22 @@ export const Main = ({
                             )}
                             {columns?.map((column) => (
                                 <Th
+                                    className='sort'
                                     key={uuidv4()}
                                     title={column.description}
                                     sortable={column.sortable}
                                     width={column.width}
                                 >
                                     {column.headerName}
+                                    <button
+                                        type='button'
+                                        className='sort-icon'
+                                        onClick={(): void =>
+                                            console.log(column.field)
+                                        }
+                                    >
+                                        <BiSortDown />
+                                    </button>
                                 </Th>
                             ))}
                         </tr>
@@ -67,7 +79,7 @@ export const Main = ({
                 </>
             )}
         </table>
-    </>
+    </div>
 )
 
 export const Table = memo(Main)
