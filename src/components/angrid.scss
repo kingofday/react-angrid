@@ -25,197 +25,23 @@
                             position: absolute;
                             top: calc(50% - 15px);
                             cursor: pointer;
-                            width: 30px px;
+                            width: 30px;
                             height: 30px;
                             color: #e3e3e3;
                             background-color: #546e7a;
                             border-radius: 50%;
                             border: none;
                             font-size: large;
-                            right: 0;
+
                             &:hover {
                                 background-color: #34454d;
                             }
                         }
-                    }
-                }
-            }
-            tbody {
-                tr {
-                    &:nth-child(even) {
-                        background-color: #f6faff;
-                    }
-                    &:hover {
-                        background-color: #eee;
-                    }
-                    td {
-                        text-align: start;
-                        padding: 8px;
-                    }
-                }
-            }
-        }
-        .bordered {
-            td {
-                border: thin solid #ccc;
-            }
-        }
-        .paginate {
-            padding: 10px;
-            border-top: thin solid #ddd;
-            display: flex;
-            justify-content: space-between;
-            flex-direction: row;
-            background-color: #f7f7f7;
-            .paginateBox {
-                display: flex;
-                flex-direction: row;
-            }
-            button {
-                cursor: pointer;
-                width: 42px;
-                height: 42px;
-                color: #2e324a;
-                background-color: #f7f7f7;
-                border-radius: 50%;
-                margin-top: 5px;
-                border: none;
-                &:hover {
-                    background-color: #eee;
-                }
-            }
-            .active {
-                background-color: #394c56;
-                color: #f7f7f7;
-                &:hover {
-                    background-color: #394c56;
-                }
-            }
-            .disabled {
-                color: #ddd;
-                &:hover {
-                    background-color: #f7f7f7;
-                    cursor: auto;
-                }
-            }
-            .selectPage {
-                min-width: 50px;
-                margin-left: 10px;
-                margin-right: 10px;
-                select {
-                    padding: 7px 5px 7px 10px;
-                    width: 100%;
-                    border: 1px solid #e8eaed;
-                    border-radius: 5px;
-                    cursor: pointer;
-                    font-family: inherit;
-                    font-size: 14px;
-                    transition: all 150ms ease;
-                    margin-top: 8px;
-                    &:required:invalid {
-                        color: #5a667f;
-                    }
-
-                    option {
-                        color: #223254;
-                    }
-                    &[value=''][disabled] {
-                        display: none;
-                    }
-
-                    &:focus {
-                        outline: none;
-                        border-color: #0077ff;
-                        box-shadow: 0 0 0 2px rgba(#0077ff, 0.2);
-                    }
-
-                    &:hover {
-                        stroke: #0077ff;
-                    }
-                }
-            }
-            .rangePage {
-                min-width: 100px;
-                margin-left: 10px;
-                margin-right: 10px;
-                select {
-                    padding: 7px 5px 7px 10px;
-                    width: 100%;
-                    border: 1px solid #e8eaed;
-                    border-radius: 5px;
-                    cursor: pointer;
-                    font-family: inherit;
-                    font-size: 14px;
-                    transition: all 150ms ease;
-                    margin-top: 8px;
-                    &:required:invalid {
-                        color: #5a667f;
-                    }
-
-                    option {
-                        color: #223254;
-                    }
-                    &[value=''][disabled] {
-                        display: none;
-                    }
-
-                    &:focus {
-                        outline: none;
-                        border-color: #0077ff;
-                        box-shadow: 0 0 0 2px rgba(#0077ff, 0.2);
-                    }
-
-                    &:hover {
-                        stroke: #0077ff;
-                    }
-                }
-            }
-            .textPage {
-                font-size: 14px;
-                color: #5a667f;
-                margin: 18px 5px;
-            }
-        }
-    }
-}
-.angridRtl {
-    position: relative;
-    border-radius: 4px;
-    -webkit-box-shadow: 0 2px 4px 2px #eee;
-    box-shadow: 0 2px 4px 2px #eee;
-    overflow-x: auto;
-    width: 100%;
-
-    .asax {
-        table {
-            border-collapse: collapse;
-            border-spacing: 0;
-            min-width: 100%;
-            thead {
-                tr {
-                    background-color: #546e7a;
-                    color: #e3e3e3;
-                    th {
-                        text-align: start;
-                        padding: 15px 10px;
-                        position: relative;
-                        border-left: thin solid #5c7988;
-                        button {
-                            margin: 0 5px;
-                            position: absolute;
-                            top: calc(50% - 15px);
-                            cursor: pointer;
-                            width: 30px px;
-                            height: 30px;
-                            color: #e3e3e3;
-                            background-color: #546e7a;
-                            border-radius: 50%;
-                            border: none;
-                            font-size: large;
-                            left: 0; //rtl
-                            &:hover {
-                                background-color: #34454d;
-                            }
+                        .rtl {
+                            left: 0;
+                        }
+                        .ltr {
+                            right: 0;
                         }
                     }
                 }

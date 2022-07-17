@@ -1,12 +1,12 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { memo, useCallback, useEffect, useState } from 'react'
-import styled from 'styled-components'
 import './angrid.css'
 import { locale } from './locale'
 import { Paginate } from './paginate'
 import { Table } from './table'
 
-export interface RowsType<T> {
-    [key: string]: T
+export interface RowsType {
+    [key: string]: any
 }
 
 export type Locale = {
@@ -20,15 +20,16 @@ export interface Columns {
     description?: string
     width?: number
     sortable?: boolean
+    render?: (row: RowsType) => JSX.Element
 }
 export interface PropsTypes {
     className?: string
     theme?: 'dark' | 'light'
-    minHeight?: number
+    minHeight?: string
     columnNumberTitle?: string
     showRowNumber: boolean
     columns: Columns[]
-    rows: RowsType<string | number>[]
+    rows: RowsType[]
     totalCount: number | undefined
     pageSize?: number
     loading?: boolean | 0
@@ -47,16 +48,10 @@ export interface PropsTypes {
 
 const range = [10, 20, 50, 100, 200, 500]
 
-const Wrapper = styled.div<Pick<PropsTypes, 'minHeight'>>`
-    min-height: ${({ minHeight }): string =>
-        typeof minHeight === 'number' ? `${minHeight}px` : '300px'};
-    display: grid;
-`
-
 const Main = ({
     className = '',
     theme = 'light',
-    minHeight = 300,
+    minHeight = '300px',
     showRowNumber,
     columnNumberTitle = '#',
     columns,
@@ -130,12 +125,13 @@ const Main = ({
     }, [language])
 
     return (
-        <Wrapper
-            className={`${rtl ? 'angridRtl' : 'angrid'} ${theme} ${className}`}
-            minHeight={minHeight}
+        <div
+            className={`angrid ${theme} ${className}`}
+            style={{ minHeight: `${minHeight}px` }}
         >
             <div className='asax'>
                 <Table
+                    rtl={rtl}
                     lang={lang}
                     className={bordered ? 'bordered' : ''}
                     showRowNumber={showRowNumber}
@@ -167,7 +163,7 @@ const Main = ({
                     />
                 )}
             </div>
-        </Wrapper>
+        </div>
     )
 }
 

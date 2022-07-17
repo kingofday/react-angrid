@@ -1,7 +1,7 @@
 import './angrid.css';
 import { locale } from './locale';
-export interface RowsType<T> {
-    [key: string]: T;
+export interface RowsType {
+    [key: string]: any;
 }
 export declare type Locale = {
     [key: string]: string;
@@ -13,15 +13,16 @@ export interface Columns {
     description?: string;
     width?: number;
     sortable?: boolean;
+    render?: (row: RowsType) => JSX.Element;
 }
 export interface PropsTypes {
     className?: string;
     theme?: 'dark' | 'light';
-    minHeight?: number;
+    minHeight?: string;
     columnNumberTitle?: string;
     showRowNumber: boolean;
     columns: Columns[];
-    rows: RowsType<string | number>[];
+    rows: RowsType[];
     totalCount: number | undefined;
     pageSize?: number;
     loading?: boolean | 0;

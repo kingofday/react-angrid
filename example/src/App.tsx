@@ -6,7 +6,7 @@ const columns = [
         field: 'userId',
         headerName: 'User Id',
         description: 'user id that is unique',
-        width: 50,
+        width: 30,
         sortable: true,
     },
     {
@@ -28,6 +28,9 @@ const columns = [
         headerName: 'delete(component cell)',
         description: 'delete user',
         width: 50,
+        render: (row: any) => {
+            return <button onClick={() => console.log(row)}>delete</button>
+        },
     },
 ]
 
@@ -39,7 +42,7 @@ const createUser = () => {
     }
 }
 
-const createUsers = (numUsers = 30) => {
+const createUsers = (numUsers = 10) => {
     return Array.from({ length: numUsers }, createUser)
 }
 
@@ -58,6 +61,7 @@ function App() {
                 showCurrentPage
                 showNumberOfPage
                 showTotalRecord
+                minHeight='600px'
             />
         </div>
     )
