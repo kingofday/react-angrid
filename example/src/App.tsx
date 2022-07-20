@@ -61,7 +61,7 @@ function App() {
                 showCurrentPage
                 showNumberOfPage
                 showTotalRecord
-                minHeight='600px'
+                minHeight={600}
             />
         </div>
     )

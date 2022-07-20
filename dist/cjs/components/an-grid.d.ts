@@ -18,7 +18,7 @@ export interface Columns {
 export interface PropsTypes {
     className?: string;
     theme?: 'dark' | 'light';
-    minHeight?: string;
+    minHeight?: number;
     columnNumberTitle?: string;
     showRowNumber: boolean;
     columns: Columns[];

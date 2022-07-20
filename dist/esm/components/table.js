@@ -33,6 +33,6 @@ export var Main = function (_a) {
                                                     isSortField === column.field ? (_jsx(BiSortDown, {})) : (_jsx(BiSortUp, {})) })))] }), uuidv4())); })] }) }), _jsxs("tbody", __assign({ className: 'tbody' }, { children: [!empty &&
                                     (rows === null || rows === void 0 ? void 0 : rows.map(function (row) { return (_jsxs("tr", { children: [showRowNumber && (_jsx("td", { children: rows.indexOf(row) + 1 })), columns === null || columns === void 0 ? void 0 : columns.map(function (c) { return (_jsx("td", { children: c.render
                                                     ? c.render(row)
-                                                    : row[c.field] }, uuidv4())); })] }, uuidv4())); })), _jsx("tr", { children: _jsx("td", __assign({ style: { height: empty ? '300px' : '' } }, { children: empty && _jsx(IsEmpty, { lang: lang }) })) })] }))] })) }))] })));
+                                                    : row[c.field] }, uuidv4())); })] }, uuidv4())); })), empty && (_jsx("tr", { children: _jsx("td", { children: empty && _jsx(IsEmpty, { lang: lang }) }) }))] }))] })) }))] })));
 };
 export var Table = memo(Main);

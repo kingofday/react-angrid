@@ -97,11 +97,11 @@ export const Main = ({
                                         ))}
                                     </tr>
                                 ))}
-                            <tr>
-                                <td style={{ height: empty ? '300px' : '' }}>
-                                    {empty && <IsEmpty lang={lang} />}
-                                </td>
-                            </tr>
+                            {empty && (
+                                <tr>
+                                    <td>{empty && <IsEmpty lang={lang} />}</td>
+                                </tr>
+                            )}
                         </tbody>
                     </>
                 )}

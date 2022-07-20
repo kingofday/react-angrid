@@ -13,5 +13,5 @@ var __assign = (this && this.__assign) || function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Loading = void 0;
 var jsx_runtime_1 = require("react/jsx-runtime");
-var Loading = function () { return ((0, jsx_runtime_1.jsxs)("div", __assign({ className: 'lds-ring' }, { children: [(0, jsx_runtime_1.jsx)("div", {}), (0, jsx_runtime_1.jsx)("div", {}), (0, jsx_runtime_1.jsx)("div", {}), (0, jsx_runtime_1.jsx)("div", {})] }))); };
+var Loading = function () { return ((0, jsx_runtime_1.jsx)("div", __assign({ className: 'loading' }, { children: (0, jsx_runtime_1.jsxs)("div", __assign({ className: 'lds-ring' }, { children: [(0, jsx_runtime_1.jsx)("div", {}), (0, jsx_runtime_1.jsx)("div", {}), (0, jsx_runtime_1.jsx)("div", {}), (0, jsx_runtime_1.jsx)("div", {})] })) }))); };
 exports.Loading = Loading;

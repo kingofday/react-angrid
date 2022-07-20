@@ -36,7 +36,7 @@ var Main = function (_a) {
                                                     isSortField === column.field ? ((0, jsx_runtime_1.jsx)(bi_1.BiSortDown, {})) : ((0, jsx_runtime_1.jsx)(bi_1.BiSortUp, {})) })))] }), (0, uuid_1.v4)())); })] }) }), (0, jsx_runtime_1.jsxs)("tbody", __assign({ className: 'tbody' }, { children: [!empty &&
                                     (rows === null || rows === void 0 ? void 0 : rows.map(function (row) { return ((0, jsx_runtime_1.jsxs)("tr", { children: [showRowNumber && ((0, jsx_runtime_1.jsx)("td", { children: rows.indexOf(row) + 1 })), columns === null || columns === void 0 ? void 0 : columns.map(function (c) { return ((0, jsx_runtime_1.jsx)("td", { children: c.render
                                                     ? c.render(row)
-                                                    : row[c.field] }, (0, uuid_1.v4)())); })] }, (0, uuid_1.v4)())); })), (0, jsx_runtime_1.jsx)("tr", { children: (0, jsx_runtime_1.jsx)("td", __assign({ style: { height: empty ? '300px' : '' } }, { children: empty && (0, jsx_runtime_1.jsx)(is_empty_1.IsEmpty, { lang: lang }) })) })] }))] })) }))] })));
+                                                    : row[c.field] }, (0, uuid_1.v4)())); })] }, (0, uuid_1.v4)())); })), empty && ((0, jsx_runtime_1.jsx)("tr", { children: (0, jsx_runtime_1.jsx)("td", { children: empty && (0, jsx_runtime_1.jsx)(is_empty_1.IsEmpty, { lang: lang }) }) }))] }))] })) }))] })));
 };
 exports.Main = Main;
 exports.Table = (0, react_1.memo)(exports.Main);

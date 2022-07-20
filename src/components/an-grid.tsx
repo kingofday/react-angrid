@@ -25,7 +25,7 @@ export interface Columns {
 export interface PropsTypes {
     className?: string
     theme?: 'dark' | 'light'
-    minHeight?: string
+    minHeight?: number
     columnNumberTitle?: string
     showRowNumber: boolean
     columns: Columns[]
@@ -51,7 +51,7 @@ const range = [10, 20, 50, 100, 200, 500]
 const Main = ({
     className = '',
     theme = 'light',
-    minHeight = '300px',
+    minHeight = 300,
     showRowNumber,
     columnNumberTitle = '#',
     columns,
@@ -74,7 +74,7 @@ const Main = ({
     const [isLoading, setIsLoading] = useState(true)
     const [isEmpty, setIsEmpty] = useState(false)
     const [isRow, setIsRow] = useState<PropsTypes['rows']>([])
-    const [isSize, setIsSize] = useState(20)
+    const [isSize, setIsSize] = useState(pageSize)
     const [lang, setLang] = useState(locale.en)
 
     const sortRows = useCallback(
