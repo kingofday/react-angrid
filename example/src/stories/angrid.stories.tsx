@@ -111,7 +111,7 @@ Default.args = {
     rtl: false,
     minHeight: 300,
     columnNumberTitle: 'number',
-    totalCount: data.length,
+    totalCount: 10,
     loading: false,
     pageSize: 5,
     showTotalRecord: true,

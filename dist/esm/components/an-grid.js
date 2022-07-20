@@ -22,7 +22,7 @@ var Main = function (_a) {
     var _t = useState(true), isLoading = _t[0], setIsLoading = _t[1];
     var _u = useState(false), isEmpty = _u[0], setIsEmpty = _u[1];
     var _v = useState([]), isRow = _v[0], setIsRow = _v[1];
-    var _w = useState(20), isSize = _w[0], setIsSize = _w[1];
+    var _w = useState(pageSize), isSize = _w[0], setIsSize = _w[1];
     var _x = useState(locale.en), lang = _x[0], setLang = _x[1];
     var sortRows = useCallback(function (value, desc) {
         var sort = rows.sort(function (a, b) {

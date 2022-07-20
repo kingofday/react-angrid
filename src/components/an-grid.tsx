@@ -74,7 +74,7 @@ const Main = ({
     const [isLoading, setIsLoading] = useState(true)
     const [isEmpty, setIsEmpty] = useState(false)
     const [isRow, setIsRow] = useState<PropsTypes['rows']>([])
-    const [isSize, setIsSize] = useState(20)
+    const [isSize, setIsSize] = useState(pageSize)
     const [lang, setLang] = useState(locale.en)
 
     const sortRows = useCallback(
