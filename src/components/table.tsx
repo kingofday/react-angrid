@@ -97,9 +97,11 @@ export const Main = ({
                                         ))}
                                     </tr>
                                 ))}
-                            <tr>
-                                <td>{empty && <IsEmpty lang={lang} />}</td>
-                            </tr>
+                            {empty && (
+                                <tr>
+                                    <td>{empty && <IsEmpty lang={lang} />}</td>
+                                </tr>
+                            )}
                         </tbody>
                     </>
                 )}
