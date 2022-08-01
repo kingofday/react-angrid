@@ -11,8 +11,8 @@ var __assign = (this && this.__assign) || function () {
 };
 import { jsxs as _jsxs, jsx as _jsx, Fragment as _Fragment } from "react/jsx-runtime";
 import { memo, useCallback, useEffect, useState } from 'react';
-import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import { v4 as uuidv4 } from 'uuid';
+import { FiChevronLeft, FiChevronRight } from './icons';
 import { usePagination } from './use-pagination';
 var PaginateType;
 (function (PaginateType) {

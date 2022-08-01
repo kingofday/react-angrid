@@ -14,8 +14,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Paginate = exports.Main = void 0;
 var jsx_runtime_1 = require("react/jsx-runtime");
 var react_1 = require("react");
-var fi_1 = require("react-icons/fi");
 var uuid_1 = require("uuid");
+var icons_1 = require("./icons");
 var use_pagination_1 = require("./use-pagination");
 var PaginateType;
 (function (PaginateType) {
@@ -76,11 +76,11 @@ var Main = function (_a) {
     }, [page, totalPageCount]);
     return ((0, jsx_runtime_1.jsxs)("div", __assign({ className: 'paginate' }, { children: [(0, jsx_runtime_1.jsxs)("div", __assign({ className: 'paginateBox' }, { children: [showTotalRecord && ((0, jsx_runtime_1.jsx)("div", __assign({ className: 'textPage' }, { children: (0, jsx_runtime_1.jsxs)("div", { children: [lang.total, ":", totalCount] }) }))), showCurrentPage && ((0, jsx_runtime_1.jsx)("div", __assign({ className: 'textPage' }, { children: totalCount && totalCount > pageSize && ((0, jsx_runtime_1.jsxs)(jsx_runtime_1.Fragment, { children: [lang.current, ": ", page] })) }))), showNumberOfPage && ((0, jsx_runtime_1.jsx)("div", __assign({ className: 'textPage' }, { children: totalCount && totalCount > pageSize && ((0, jsx_runtime_1.jsxs)(jsx_runtime_1.Fragment, { children: [lang.number, ": ", totalPageCount] })) })))] })), totalCount && totalCount > pageSize && ((0, jsx_runtime_1.jsxs)("div", __assign({ className: 'paginateBox' }, { children: [(0, jsx_runtime_1.jsxs)("div", { children: [showPageArrow && ((0, jsx_runtime_1.jsx)("button", __assign({ onClick: function () {
                                     return pageChanging(PaginateType.PREV, 1);
-                                }, type: 'button', className: page === 1 ? 'disabled' : '' }, { children: rtl ? (0, jsx_runtime_1.jsx)(fi_1.FiChevronRight, {}) : (0, jsx_runtime_1.jsx)(fi_1.FiChevronLeft, {}) }))), showPageNumber && ((0, jsx_runtime_1.jsx)("span", { children: slices.map(function (item) { return ((0, jsx_runtime_1.jsx)("button", __assign({ className: item === page ? 'active' : '', onClick: function () {
+                                }, type: 'button', className: page === 1 ? 'disabled' : '' }, { children: rtl ? (0, jsx_runtime_1.jsx)(icons_1.FiChevronRight, {}) : (0, jsx_runtime_1.jsx)(icons_1.FiChevronLeft, {}) }))), showPageNumber && ((0, jsx_runtime_1.jsx)("span", { children: slices.map(function (item) { return ((0, jsx_runtime_1.jsx)("button", __assign({ className: item === page ? 'active' : '', onClick: function () {
                                         return pageChanging(PaginateType.SELECT, item);
                                     }, type: 'button' }, { children: item }), (0, uuid_1.v4)())); }) })), showPageArrow && ((0, jsx_runtime_1.jsx)("button", __assign({ onClick: function () {
                                     return pageChanging(PaginateType.NEXT, 1);
-                                }, type: 'button', className: page === totalPageCount ? 'disabled' : '' }, { children: rtl ? (0, jsx_runtime_1.jsx)(fi_1.FiChevronLeft, {}) : (0, jsx_runtime_1.jsx)(fi_1.FiChevronRight, {}) })))] }), showPageSelect && ((0, jsx_runtime_1.jsx)("div", __assign({ className: 'selectPage' }, { children: (0, jsx_runtime_1.jsx)("select", __assign({ value: page, onChange: function (event) {
+                                }, type: 'button', className: page === totalPageCount ? 'disabled' : '' }, { children: rtl ? (0, jsx_runtime_1.jsx)(icons_1.FiChevronLeft, {}) : (0, jsx_runtime_1.jsx)(icons_1.FiChevronRight, {}) })))] }), showPageSelect && ((0, jsx_runtime_1.jsx)("div", __assign({ className: 'selectPage' }, { children: (0, jsx_runtime_1.jsx)("select", __assign({ value: page, onChange: function (event) {
                                 return pageChanging(PaginateType.SELECT, +event.target.value);
                             } }, { children: pages.map(function (item) { return ((0, jsx_runtime_1.jsx)("option", __assign({ value: item }, { children: item }), (0, uuid_1.v4)())); }) })) }))), showPageRange && ((0, jsx_runtime_1.jsx)("div", __assign({ className: 'rangePage' }, { children: (0, jsx_runtime_1.jsx)("select", __assign({ value: rangePageSize, onChange: function (event) {
                                 return setRangePageSize(+event.target.value);

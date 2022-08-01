@@ -12,8 +12,8 @@ var __assign = (this && this.__assign) || function () {
 import { jsx as _jsx, jsxs as _jsxs, Fragment as _Fragment } from "react/jsx-runtime";
 /* eslint-disable @typescript-eslint/no-unsafe-return */
 import { memo, useCallback, useState } from 'react';
-import { BiSortDown, BiSortUp } from 'react-icons/bi';
 import { v4 as uuidv4 } from 'uuid';
+import { BiSortDown, BiSortUp } from './icons';
 import { IsEmpty } from './is-empty';
 import { Loading } from './loading';
 export var Main = function (_a) {

@@ -1,7 +1,6 @@
 import type { Locale } from './an-grid'
 import { EmptyIcon } from './icons'
 
-// todo type from angrid component
 export type IsEmptyProps = {
     className?: string
     lang: Locale

@@ -15,8 +15,8 @@ exports.Table = exports.Main = void 0;
 var jsx_runtime_1 = require("react/jsx-runtime");
 /* eslint-disable @typescript-eslint/no-unsafe-return */
 var react_1 = require("react");
-var bi_1 = require("react-icons/bi");
 var uuid_1 = require("uuid");
+var icons_1 = require("./icons");
 var is_empty_1 = require("./is-empty");
 var loading_1 = require("./loading");
 var Main = function (_a) {
@@ -33,7 +33,7 @@ var Main = function (_a) {
                                         } }, { children: [column.headerName, column.sortable && ((0, jsx_runtime_1.jsx)("button", __assign({ type: 'button', className: rtl ? 'rtl' : 'ltr', onClick: function () {
                                                     return handleSort(column.field);
                                                 } }, { children: isSort &&
-                                                    isSortField === column.field ? ((0, jsx_runtime_1.jsx)(bi_1.BiSortDown, {})) : ((0, jsx_runtime_1.jsx)(bi_1.BiSortUp, {})) })))] }), (0, uuid_1.v4)())); })] }) }), (0, jsx_runtime_1.jsxs)("tbody", __assign({ className: 'tbody' }, { children: [!empty &&
+                                                    isSortField === column.field ? ((0, jsx_runtime_1.jsx)(icons_1.BiSortDown, {})) : ((0, jsx_runtime_1.jsx)(icons_1.BiSortUp, {})) })))] }), (0, uuid_1.v4)())); })] }) }), (0, jsx_runtime_1.jsxs)("tbody", __assign({ className: 'tbody' }, { children: [!empty &&
                                     (rows === null || rows === void 0 ? void 0 : rows.map(function (row) { return ((0, jsx_runtime_1.jsxs)("tr", { children: [showRowNumber && ((0, jsx_runtime_1.jsx)("td", { children: rows.indexOf(row) + 1 })), columns === null || columns === void 0 ? void 0 : columns.map(function (c) { return ((0, jsx_runtime_1.jsx)("td", { children: c.render
                                                     ? c.render(row)
                                                     : row[c.field] }, (0, uuid_1.v4)())); })] }, (0, uuid_1.v4)())); })), empty && ((0, jsx_runtime_1.jsx)("tr", { children: (0, jsx_runtime_1.jsx)("td", { children: empty && (0, jsx_runtime_1.jsx)(is_empty_1.IsEmpty, { lang: lang }) }) }))] }))] })) }))] })));

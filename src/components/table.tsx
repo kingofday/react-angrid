@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-return */
 import { memo, useCallback, useState } from 'react'
-import { BiSortDown, BiSortUp } from 'react-icons/bi'
 import { v4 as uuidv4 } from 'uuid'
+import { BiSortDown, BiSortUp } from './icons'
 import type { Locale, PropsTypes } from './an-grid'
 import { IsEmpty } from './is-empty'
 import { Loading } from './loading'

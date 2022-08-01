@@ -1,6 +1,6 @@
 import { memo, useCallback, useEffect, useState } from 'react'
-import { FiChevronLeft, FiChevronRight } from 'react-icons/fi'
 import { v4 as uuidv4 } from 'uuid'
+import { FiChevronLeft, FiChevronRight } from './icons'
 import type { Locale, PropsTypes } from './an-grid'
 import { usePagination } from './use-pagination'
 
