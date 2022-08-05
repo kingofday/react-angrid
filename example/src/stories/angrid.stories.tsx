@@ -6,13 +6,6 @@ export default {
     title: 'Angrid',
     component: Angrid,
     argTypes: {
-        language: {
-            control: {
-                type: 'inline-radio',
-                options: ['en', 'fa'],
-                default: 'en',
-            },
-        },
         theme: {
             control: {
                 type: 'inline-radio',
@@ -51,9 +44,6 @@ const columns = [
         headerName: 'delete(component cell)',
         description: 'delete user',
         width: 50,
-        // render: (row: any) => {
-        //     return <button onClick={() => console.log(row)}>delete</button>
-        // },
     },
 ]
 
@@ -122,6 +112,10 @@ Default.args = {
     showPageNumber: true,
     showPageArrow: true,
     showCurrentPage: true,
+    textCurrent: 'Current Page',
+    textTotal: 'all pages',
+    textNumber: 'Page Count',
+    textEmpty: 'No Data',
     bordered: false,
     onPageChange: (page: number) => console.log(page),
 }

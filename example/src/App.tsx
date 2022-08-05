@@ -51,7 +51,6 @@ function App() {
         <div className='App' dir='rtl'>
             <Angrid
                 rtl
-                language='fa'
                 showRowNumber
                 columns={columns}
                 rows={createUsers()}
