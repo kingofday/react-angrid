@@ -36,13 +36,14 @@ const columns = [
 
 const createUser = () => {
     return {
+        key:faker.unique(faker.datatype.number).toString(),
         userId: faker.unique(faker.datatype.number),
         fullName: faker.name.findName(),
         age: faker.datatype.number(100),
     }
 }
 
-const createUsers = (numUsers = 0) => {
+const createUsers = (numUsers = 10) => {
     return Array.from({ length: numUsers }, createUser)
 }
 
@@ -51,7 +52,7 @@ function App() {
         <div className='App' dir='rtl'>
             <Angrid
                 rtl
-                showRowNumber
+                //showRowNumber
                 columns={columns}
                 rows={createUsers()}
                 totalCount={100}

@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unsafe-return */
 import { memo, useCallback, useState } from 'react'
-import { v4 as uuidv4 } from 'uuid'
 import type { PropsTypes } from './an-grid'
 import { BiSortDown, BiSortUp } from './icons'
 import { IsEmpty } from './is-empty'
@@ -13,8 +12,8 @@ type Props = Partial<PropsTypes> & {
 }
 
 export const Main = ({
-    showRowNumber,
-    columnNumberTitle,
+    // showRowNumber,
+    // columnNumberTitle,
     columns,
     rows,
     empty,
@@ -44,15 +43,15 @@ export const Main = ({
                     <>
                         <thead>
                             <tr>
-                                {showRowNumber && (
+                                {/* {showRowNumber && (
                                     <th style={{ width: 25 }}>
                                         {columnNumberTitle}
                                     </th>
-                                )}
+                                )} */}
                                 {columns?.map((column) => (
                                     <th
                                         className='sort'
-                                        key={uuidv4()}
+                                        key={column.field}
                                         title={column.description}
                                         style={{
                                             width: column.width,
@@ -83,12 +82,12 @@ export const Main = ({
                         <tbody className='tbody'>
                             {!empty &&
                                 rows?.map((row) => (
-                                    <tr key={uuidv4()}>
-                                        {showRowNumber && (
+                                    <tr key={row.key}>
+                                        {/* {showRowNumber && (
                                             <td>{rows.indexOf(row) + 1}</td>
-                                        )}
+                                        )} */}
                                         {columns?.map((c) => (
-                                            <td key={uuidv4()}>
+                                            <td key={c.field}>
                                                 {c.render
                                                     ? c.render(row)
                                                     : row[c.field]}

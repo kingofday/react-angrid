@@ -1,6 +1,7 @@
 import './angrid.css';
 import { locale } from './locale';
 export interface RowsType {
+    key: string;
     [key: string]: any;
 }
 export declare type Locale = {
@@ -19,8 +20,6 @@ export interface PropsTypes {
     className?: string;
     theme?: 'dark' | 'light';
     minHeight?: number;
-    columnNumberTitle?: string;
-    showRowNumber: boolean;
     columns: Columns[];
     rows: RowsType[];
     totalCount: number | undefined;
@@ -41,4 +40,4 @@ export interface PropsTypes {
     rtl?: boolean;
     onPageChange: (current: number, size: number) => void;
 }
-export declare const Angrid: import("react").MemoExoticComponent<({ className, theme, minHeight, showRowNumber, columnNumberTitle, columns, rows, totalCount, loading, pageSize, onPageChange, showTotalRecord, showCurrentPage, showNumberOfPage, showPageRange, showPageSelect, showPageNumber, showPageArrow, bordered, textCurrent, textTotal, textNumber, textEmpty, rtl, }: PropsTypes) => JSX.Element>;
+export declare const Angrid: import("react").MemoExoticComponent<({ className, theme, minHeight, columns, rows, totalCount, loading, pageSize, onPageChange, showTotalRecord, showCurrentPage, showNumberOfPage, showPageRange, showPageSelect, showPageNumber, showPageArrow, bordered, textCurrent, textTotal, textNumber, textEmpty, rtl, }: PropsTypes) => JSX.Element>;

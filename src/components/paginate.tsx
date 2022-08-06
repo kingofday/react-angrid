@@ -89,7 +89,7 @@ export const Main = ({
                 {showTotalRecord && (
                     <div className='textPage'>
                         <div>
-                            {textTotal}:{totalCount}
+                            {textTotal}: {totalCount}
                         </div>
                     </div>
                 )}
@@ -117,7 +117,7 @@ export const Main = ({
             {totalCount && totalCount > pageSize && (
                 <div className='paginateBox'>
                     {/* button select page */}
-                    <div>
+                    <div className='paginate-nav'>
                         {showPageArrow && (
                             <button
                                 onClick={(): void =>
@@ -131,7 +131,7 @@ export const Main = ({
                         )}
 
                         {showPageNumber && (
-                            <span>
+                            <div>
                                 {slices.map((item) => (
                                     <button
                                         key={uuidv4()}
@@ -149,7 +149,7 @@ export const Main = ({
                                         {item}
                                     </button>
                                 ))}
-                            </span>
+                            </div>
                         )}
 
                         {showPageArrow && (

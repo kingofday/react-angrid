@@ -18,11 +18,14 @@ import { Paginate } from './paginate';
 import { Table } from './table';
 var range = [10, 20, 50, 100, 200, 500];
 var Main = function (_a) {
-    var _b = _a.className, className = _b === void 0 ? '' : _b, _c = _a.theme, theme = _c === void 0 ? 'light' : _c, _d = _a.minHeight, minHeight = _d === void 0 ? 300 : _d, showRowNumber = _a.showRowNumber, _e = _a.columnNumberTitle, columnNumberTitle = _e === void 0 ? '#' : _e, columns = _a.columns, rows = _a.rows, totalCount = _a.totalCount, _f = _a.loading, loading = _f === void 0 ? 0 : _f, _g = _a.pageSize, pageSize = _g === void 0 ? 20 : _g, onPageChange = _a.onPageChange, _h = _a.showTotalRecord, showTotalRecord = _h === void 0 ? false : _h, _j = _a.showCurrentPage, showCurrentPage = _j === void 0 ? false : _j, _k = _a.showNumberOfPage, showNumberOfPage = _k === void 0 ? false : _k, _l = _a.showPageRange, showPageRange = _l === void 0 ? true : _l, _m = _a.showPageSelect, showPageSelect = _m === void 0 ? true : _m, _o = _a.showPageNumber, showPageNumber = _o === void 0 ? true : _o, _p = _a.showPageArrow, showPageArrow = _p === void 0 ? true : _p, _q = _a.bordered, bordered = _q === void 0 ? false : _q, _r = _a.textCurrent, textCurrent = _r === void 0 ? locale.fa.current : _r, _s = _a.textTotal, textTotal = _s === void 0 ? locale.fa.total : _s, _t = _a.textNumber, textNumber = _t === void 0 ? locale.fa.number : _t, _u = _a.textEmpty, textEmpty = _u === void 0 ? locale.fa.empty : _u, _v = _a.rtl, rtl = _v === void 0 ? false : _v;
-    var _w = useState(true), isLoading = _w[0], setIsLoading = _w[1];
-    var _x = useState(false), isEmpty = _x[0], setIsEmpty = _x[1];
-    var _y = useState([]), isRow = _y[0], setIsRow = _y[1];
-    var _z = useState(pageSize), isSize = _z[0], setIsSize = _z[1];
+    var _b = _a.className, className = _b === void 0 ? '' : _b, _c = _a.theme, theme = _c === void 0 ? 'light' : _c, _d = _a.minHeight, minHeight = _d === void 0 ? 300 : _d, 
+    // showRowNumber,
+    // columnNumberTitle = '#',
+    columns = _a.columns, rows = _a.rows, totalCount = _a.totalCount, _e = _a.loading, loading = _e === void 0 ? 0 : _e, _f = _a.pageSize, pageSize = _f === void 0 ? 20 : _f, onPageChange = _a.onPageChange, _g = _a.showTotalRecord, showTotalRecord = _g === void 0 ? false : _g, _h = _a.showCurrentPage, showCurrentPage = _h === void 0 ? false : _h, _j = _a.showNumberOfPage, showNumberOfPage = _j === void 0 ? false : _j, _k = _a.showPageRange, showPageRange = _k === void 0 ? true : _k, _l = _a.showPageSelect, showPageSelect = _l === void 0 ? true : _l, _m = _a.showPageNumber, showPageNumber = _m === void 0 ? true : _m, _o = _a.showPageArrow, showPageArrow = _o === void 0 ? true : _o, _p = _a.bordered, bordered = _p === void 0 ? false : _p, _q = _a.textCurrent, textCurrent = _q === void 0 ? locale.fa.current : _q, _r = _a.textTotal, textTotal = _r === void 0 ? locale.fa.total : _r, _s = _a.textNumber, textNumber = _s === void 0 ? locale.fa.number : _s, _t = _a.textEmpty, textEmpty = _t === void 0 ? locale.fa.empty : _t, _u = _a.rtl, rtl = _u === void 0 ? false : _u;
+    var _v = useState(true), isLoading = _v[0], setIsLoading = _v[1];
+    var _w = useState(false), isEmpty = _w[0], setIsEmpty = _w[1];
+    var _x = useState([]), isRow = _x[0], setIsRow = _x[1];
+    var _y = useState(pageSize), isSize = _y[0], setIsSize = _y[1];
     var sortRows = useCallback(function (value, desc) {
         var sort = rows.sort(function (a, b) {
             if (!desc) {
@@ -59,7 +62,10 @@ var Main = function (_a) {
             setIsSize(pageSize);
         }
     }, [pageSize]);
-    return (_jsx("div", __assign({ className: "angrid ".concat(theme, " ").concat(className), style: { minHeight: "".concat(minHeight, "px") } }, { children: _jsxs("div", __assign({ className: 'asax' }, { children: [_jsx(Table, { textEmpty: textEmpty, rtl: rtl, className: bordered ? 'bordered' : '', showRowNumber: showRowNumber, columnNumberTitle: columnNumberTitle, columns: columns, rows: isRow, empty: isEmpty, loading: isLoading, sortable: function (value, sort) {
+    return (_jsx("div", __assign({ className: "angrid ".concat(theme, " ").concat(className), style: { minHeight: "".concat(minHeight, "px") } }, { children: _jsxs("div", __assign({ className: 'asax' }, { children: [_jsx(Table, { textEmpty: textEmpty, rtl: rtl, className: bordered ? 'bordered' : '', 
+                    // showRowNumber={showRowNumber}
+                    // columnNumberTitle={columnNumberTitle}
+                    columns: columns, rows: isRow, empty: isEmpty, loading: isLoading, sortable: function (value, sort) {
                         return sortRows(value, sort);
                     } }), !isEmpty && (_jsx(Paginate, { textCurrent: textCurrent, textTotal: textTotal, textNumber: textNumber, rtl: rtl, totalCount: totalCount, pageSize: isSize, onPageChange: onPageChange, range: range, showTotalRecord: showTotalRecord, showCurrentPage: showCurrentPage, showNumberOfPage: showNumberOfPage, showPageRange: showPageRange, showPageSelect: showPageSelect, showPageNumber: showPageNumber, showPageArrow: showPageArrow }))] })) })));
 };

@@ -6,6 +6,7 @@ import { Paginate } from './paginate'
 import { Table } from './table'
 
 export interface RowsType {
+    key: string,
     [key: string]: any
 }
 
@@ -26,8 +27,8 @@ export interface PropsTypes {
     className?: string
     theme?: 'dark' | 'light'
     minHeight?: number
-    columnNumberTitle?: string
-    showRowNumber: boolean
+    // columnNumberTitle?: string
+    // showRowNumber: boolean
     columns: Columns[]
     rows: RowsType[]
     totalCount: number | undefined
@@ -55,8 +56,8 @@ const Main = ({
     className = '',
     theme = 'light',
     minHeight = 300,
-    showRowNumber,
-    columnNumberTitle = '#',
+    // showRowNumber,
+    // columnNumberTitle = '#',
     columns,
     rows,
     totalCount,
@@ -132,8 +133,8 @@ const Main = ({
                     textEmpty={textEmpty}
                     rtl={rtl}
                     className={bordered ? 'bordered' : ''}
-                    showRowNumber={showRowNumber}
-                    columnNumberTitle={columnNumberTitle}
+                    // showRowNumber={showRowNumber}
+                    // columnNumberTitle={columnNumberTitle}
                     columns={columns}
                     rows={isRow}
                     empty={isEmpty}

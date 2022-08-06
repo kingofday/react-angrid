@@ -3,6 +3,7 @@
 
 react-angrid is a free and light component in react for data grid with supporting:
 
+  - type script
   - paging 
   - sortable
   - rtl
@@ -12,7 +13,7 @@ react-angrid is a free and light component in react for data grid with supportin
 
 ## Installation
 
-react-angrid requires react "^17.0.1", react-dome "^17.0.1" to run.
+react-angrid requires react "^18.2.0", react-dome "^18.2.0" to run.
 ```
 npm i react-angrid --save
 ```
@@ -20,7 +21,7 @@ npm i react-angrid --save
 Minimal Usage:
 
 ```
-import Angrid from "rect-angrid";
+import {Angrid} from "rect-angrid";
 ...
   const columns = [
     {
@@ -41,7 +42,8 @@ import Angrid from "rect-angrid";
     ];
     const rows = [
     {
-        fullname:"shahrooz bazrafshan"
+      key:"1",
+      fullname:"shahrooz bazrafshan"
     },
     {
         
@@ -57,7 +59,7 @@ import Angrid from "rect-angrid";
 ```
 Advanced Usage:
 ```
-    import Angrid from "rect-angrid";
+    import {Angrid} from "rect-angrid";
 
     const columns = [
     {
@@ -118,7 +120,6 @@ Advanced Usage:
         loading={loading}
         columns={columns}
         rows={rows}
-        showRowNumber={true}
         pageSize={filter.pageSize}
         pageNumber={filter.pageNumber}
         totalCount={totalCount}
@@ -146,7 +147,7 @@ Advanced Usage:
     .
     ]
 ```
-- **rows:** must be array of object that contains field property to be shown
+- **rows:** must be array of object that contains field property to be shown, and each row must ahve a unique key
 - **loading:** toggle loader overlay when fetching data
 - **showRowNumber:** if true append a row number as first column(bool,default is false)
 - **pageSize:** the page size of data, you can set it after api fetch(int)

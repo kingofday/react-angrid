@@ -49,36 +49,43 @@ const columns = [
 
 const data = [
     {
+        key: faker.unique(faker.datatype.number).toString(),
         userId: faker.unique(faker.datatype.number),
         fullName: faker.name.findName(),
         age: faker.datatype.number(100),
     },
     {
+        key: faker.unique(faker.datatype.number).toString(),
         userId: faker.unique(faker.datatype.number),
         fullName: faker.name.findName(),
         age: faker.datatype.number(100),
     },
     {
+        key: faker.unique(faker.datatype.number).toString(),
         userId: faker.unique(faker.datatype.number),
         fullName: faker.name.findName(),
         age: faker.datatype.number(100),
     },
     {
+        key: faker.unique(faker.datatype.number).toString(),
         userId: faker.unique(faker.datatype.number),
         fullName: faker.name.findName(),
         age: faker.datatype.number(100),
     },
     {
+        key: faker.unique(faker.datatype.number).toString(),
         userId: faker.unique(faker.datatype.number),
         fullName: faker.name.findName(),
         age: faker.datatype.number(100),
     },
     {
+        key: faker.unique(faker.datatype.number).toString(),
         userId: faker.unique(faker.datatype.number),
         fullName: faker.name.findName(),
         age: faker.datatype.number(100),
     },
     {
+        key: faker.unique(faker.datatype.number).toString(),
         userId: faker.unique(faker.datatype.number),
         fullName: faker.name.findName(),
         age: faker.datatype.number(100),
@@ -100,12 +107,12 @@ Default.args = {
     columns,
     rtl: false,
     minHeight: 300,
-    columnNumberTitle: 'number',
+   //columnNumberTitle: 'number',
     totalCount: 10,
     loading: false,
     pageSize: 5,
     showTotalRecord: true,
-    showRowNumber: true,
+    //showRowNumber: true,
     showNumberOfPage: true,
     showPageRange: true,
     showPageSelect: true,

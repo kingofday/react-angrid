@@ -77,14 +77,18 @@
                 display: flex;
                 flex-direction: row;
             }
+            .paginate-nav {
+                display: inline-flex;
+                align-items: center;
+            }
             button {
                 cursor: pointer;
-                width: 42px;
-                height: 42px;
+                width: 32px;
+                height: 32px;
                 color: #2e324a;
                 background-color: #f7f7f7;
                 border-radius: 50%;
-                margin-top: 5px;
+                margin: 0 4px;
                 border: none;
                 &:hover {
                     background-color: #eee;
@@ -125,7 +129,7 @@
                     option {
                         color: #223254;
                     }
-                    &[value=''][disabled] {
+                    &[value=""][disabled] {
                         display: none;
                     }
 
@@ -161,7 +165,7 @@
                     option {
                         color: #223254;
                     }
-                    &[value=''][disabled] {
+                    &[value=""][disabled] {
                         display: none;
                     }
 
