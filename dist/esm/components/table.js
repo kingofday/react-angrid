@@ -17,7 +17,7 @@ import { BiSortDown, BiSortUp } from './icons';
 import { IsEmpty } from './is-empty';
 import { Loading } from './loading';
 export var Main = function (_a) {
-    var showRowNumber = _a.showRowNumber, columnNumberTitle = _a.columnNumberTitle, columns = _a.columns, rows = _a.rows, empty = _a.empty, loading = _a.loading, className = _a.className, lang = _a.lang, rtl = _a.rtl, sortable = _a.sortable;
+    var showRowNumber = _a.showRowNumber, columnNumberTitle = _a.columnNumberTitle, columns = _a.columns, rows = _a.rows, empty = _a.empty, textEmpty = _a.textEmpty, loading = _a.loading, className = _a.className, rtl = _a.rtl, sortable = _a.sortable;
     var _b = useState(false), isSort = _b[0], setIsSort = _b[1];
     var _c = useState(''), isSortField = _c[0], setIsSortField = _c[1];
     var handleSort = useCallback(function (value) {
@@ -33,6 +33,6 @@ export var Main = function (_a) {
                                                     isSortField === column.field ? (_jsx(BiSortDown, {})) : (_jsx(BiSortUp, {})) })))] }), uuidv4())); })] }) }), _jsxs("tbody", __assign({ className: 'tbody' }, { children: [!empty &&
                                     (rows === null || rows === void 0 ? void 0 : rows.map(function (row) { return (_jsxs("tr", { children: [showRowNumber && (_jsx("td", { children: rows.indexOf(row) + 1 })), columns === null || columns === void 0 ? void 0 : columns.map(function (c) { return (_jsx("td", { children: c.render
                                                     ? c.render(row)
-                                                    : row[c.field] }, uuidv4())); })] }, uuidv4())); })), empty && (_jsx("tr", { children: _jsx("td", { children: empty && _jsx(IsEmpty, { lang: lang }) }) }))] }))] })) }))] })));
+                                                    : row[c.field] }, uuidv4())); })] }, uuidv4())); })), empty && (_jsx("tr", { children: _jsx("td", { children: empty && (_jsx(IsEmpty, { textEmpty: textEmpty })) }) }))] }))] })) }))] })));
 };
 export var Table = memo(Main);

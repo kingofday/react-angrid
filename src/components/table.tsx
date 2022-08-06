@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unsafe-return */
 import { memo, useCallback, useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
+import type { PropsTypes } from './an-grid'
 import { BiSortDown, BiSortUp } from './icons'
-import type { Locale, PropsTypes } from './an-grid'
 import { IsEmpty } from './is-empty'
 import { Loading } from './loading'
 
@@ -10,7 +10,6 @@ type Props = Partial<PropsTypes> & {
     empty: boolean
     loading: boolean
     sortable: (value: string, sort: boolean) => void
-    lang: Locale
 }
 
 export const Main = ({
@@ -19,9 +18,9 @@ export const Main = ({
     columns,
     rows,
     empty,
+    textEmpty,
     loading,
     className,
-    lang,
     rtl,
     sortable,
 }: Props): JSX.Element => {
@@ -99,7 +98,11 @@ export const Main = ({
                                 ))}
                             {empty && (
                                 <tr>
-                                    <td>{empty && <IsEmpty lang={lang} />}</td>
+                                    <td>
+                                        {empty && (
+                                            <IsEmpty textEmpty={textEmpty} />
+                                        )}
+                                    </td>
                                 </tr>
                             )}
                         </tbody>

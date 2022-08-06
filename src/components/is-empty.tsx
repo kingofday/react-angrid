@@ -1,12 +1,11 @@
-import type { Locale } from './an-grid'
 import { EmptyIcon } from './icons'
 
 export type IsEmptyProps = {
     className?: string
-    lang: Locale
+    textEmpty?: string
 }
 
-export const IsEmpty: React.FC<IsEmptyProps> = ({ lang }) => (
+export const IsEmpty: React.FC<IsEmptyProps> = ({ textEmpty }) => (
     <div className='isEmpty'>
         <EmptyIcon />
         <div
@@ -15,7 +14,7 @@ export const IsEmpty: React.FC<IsEmptyProps> = ({ lang }) => (
                 textAlign: 'center',
             }}
         >
-            {lang.empty}
+            {textEmpty}
         </div>
     </div>
 )

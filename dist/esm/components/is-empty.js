@@ -12,9 +12,9 @@ var __assign = (this && this.__assign) || function () {
 import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 import { EmptyIcon } from './icons';
 export var IsEmpty = function (_a) {
-    var lang = _a.lang;
+    var textEmpty = _a.textEmpty;
     return (_jsxs("div", __assign({ className: 'isEmpty' }, { children: [_jsx(EmptyIcon, {}), _jsx("div", __assign({ style: {
                     color: 'rgb(149 147 147)',
                     textAlign: 'center',
-                } }, { children: lang.empty }))] })));
+                } }, { children: textEmpty }))] })));
 };
