@@ -81,7 +81,6 @@ const Main = ({
     const [isEmpty, setIsEmpty] = useState(false)
     const [isRow, setIsRow] = useState<PropsTypes['rows']>([])
     const [isSize, setIsSize] = useState(pageSize)
-
     const sortRows = useCallback(
         (value: string, desc: boolean): void => {
             const sort = rows.sort((a, b) => {
