@@ -41,8 +41,11 @@ export interface PropsTypes {
     showPageNumber?: boolean
     showPageArrow?: boolean
     bordered?: boolean
+    textCurrent?: string
+    textTotal?: string
+    textNumber?: string
+    textEmpty?: string
     rtl?: boolean
-    language?: Lang
     onPageChange: (current: number, size: number) => void
 }
 
@@ -68,15 +71,16 @@ const Main = ({
     showPageNumber = true,
     showPageArrow = true,
     bordered = false,
+    textCurrent = locale.fa.current,
+    textTotal = locale.fa.total,
+    textNumber = locale.fa.number,
+    textEmpty = locale.fa.empty,
     rtl = false,
-    language = 'en',
 }: PropsTypes): JSX.Element => {
     const [isLoading, setIsLoading] = useState(true)
     const [isEmpty, setIsEmpty] = useState(false)
     const [isRow, setIsRow] = useState<PropsTypes['rows']>([])
     const [isSize, setIsSize] = useState(pageSize)
-    const [lang, setLang] = useState(locale.en)
-
     const sortRows = useCallback(
         (value: string, desc: boolean): void => {
             const sort = rows.sort((a, b) => {
@@ -118,12 +122,6 @@ const Main = ({
         }
     }, [pageSize])
 
-    useEffect(() => {
-        if (language) {
-            setLang(locale[language])
-        }
-    }, [language])
-
     return (
         <div
             className={`angrid ${theme} ${className}`}
@@ -131,8 +129,8 @@ const Main = ({
         >
             <div className='asax'>
                 <Table
+                    textEmpty={textEmpty}
                     rtl={rtl}
-                    lang={lang}
                     className={bordered ? 'bordered' : ''}
                     showRowNumber={showRowNumber}
                     columnNumberTitle={columnNumberTitle}
@@ -147,7 +145,9 @@ const Main = ({
 
                 {!isEmpty && (
                     <Paginate
-                        lang={lang}
+                        textCurrent={textCurrent}
+                        textTotal={textTotal}
+                        textNumber={textNumber}
                         rtl={rtl}
                         totalCount={totalCount}
                         pageSize={isSize}

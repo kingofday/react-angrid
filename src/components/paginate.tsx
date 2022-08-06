@@ -1,7 +1,7 @@
 import { memo, useCallback, useEffect, useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
+import type { PropsTypes } from './an-grid'
 import { FiChevronLeft, FiChevronRight } from './icons'
-import type { Locale, PropsTypes } from './an-grid'
 import { usePagination } from './use-pagination'
 
 enum PaginateType {
@@ -12,7 +12,6 @@ enum PaginateType {
 
 type Props = Partial<PropsTypes> & {
     range: number[]
-    lang: Locale
 }
 
 export const Main = ({
@@ -27,7 +26,9 @@ export const Main = ({
     showPageSelect,
     showPageNumber,
     showPageArrow,
-    lang,
+    textNumber,
+    textTotal,
+    textCurrent,
     rtl,
 }: Props): JSX.Element => {
     const [page, setPage] = useState(1)
@@ -88,7 +89,7 @@ export const Main = ({
                 {showTotalRecord && (
                     <div className='textPage'>
                         <div>
-                            {lang.total}:{totalCount}
+                            {textTotal}:{totalCount}
                         </div>
                     </div>
                 )}
@@ -97,7 +98,7 @@ export const Main = ({
                     <div className='textPage'>
                         {totalCount && totalCount > pageSize && (
                             <>
-                                {lang.current}: {page}
+                                {textCurrent}: {page}
                             </>
                         )}
                     </div>
@@ -107,7 +108,7 @@ export const Main = ({
                     <div className='textPage'>
                         {totalCount && totalCount > pageSize && (
                             <>
-                                {lang.number}: {totalPageCount}
+                                {textNumber}: {totalPageCount}
                             </>
                         )}
                     </div>

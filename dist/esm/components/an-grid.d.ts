@@ -34,8 +34,11 @@ export interface PropsTypes {
     showPageNumber?: boolean;
     showPageArrow?: boolean;
     bordered?: boolean;
+    textCurrent?: string;
+    textTotal?: string;
+    textNumber?: string;
+    textEmpty?: string;
     rtl?: boolean;
-    language?: Lang;
     onPageChange: (current: number, size: number) => void;
 }
-export declare const Angrid: import("react").MemoExoticComponent<({ className, theme, minHeight, showRowNumber, columnNumberTitle, columns, rows, totalCount, loading, pageSize, onPageChange, showTotalRecord, showCurrentPage, showNumberOfPage, showPageRange, showPageSelect, showPageNumber, showPageArrow, bordered, rtl, language, }: PropsTypes) => JSX.Element>;
+export declare const Angrid: import("react").MemoExoticComponent<({ className, theme, minHeight, showRowNumber, columnNumberTitle, columns, rows, totalCount, loading, pageSize, onPageChange, showTotalRecord, showCurrentPage, showNumberOfPage, showPageRange, showPageSelect, showPageNumber, showPageArrow, bordered, textCurrent, textTotal, textNumber, textEmpty, rtl, }: PropsTypes) => JSX.Element>;
